@@ -24,6 +24,20 @@ namespace keepr.Repositories
             return keepData;
         }
 
+        internal int EditKeep(Keep updatedKeep)
+        {
+            string sql = @"
+            UPDATE keeps
+            SET
+            name = @name,
+            description = @description
+            WHERE id = @id;
+            ";
+
+            int rows = _db.Execute(sql, updatedKeep);
+            return rows;
+        }
+
         internal List<Keep> GetAllKeeps()
         {
             string sql = @"
