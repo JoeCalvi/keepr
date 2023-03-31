@@ -14,5 +14,11 @@ namespace keepr.Services
             Keep keep = _repo.CreateKeep(keepData);
             return keep;
         }
+
+        internal List<Keep> GetAllKeeps()
+        {
+            List<Keep> keeps = _repo.GetAllKeeps();
+            return keeps;
+        }
     }
 }

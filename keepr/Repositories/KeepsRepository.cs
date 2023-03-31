@@ -23,5 +23,22 @@ namespace keepr.Repositories
             keepData.Id = id;
             return keepData;
         }
+
+        internal List<Keep> GetAllKeeps()
+        {
+            string sql = @"
+            SELECT
+            keep.*,
+            acct.*
+            FROM keeps keep
+            JOIN accounts acct ON keep.creatorId = acct.id;
+            ";
+
+            List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (keep, creator) => {
+                keep.Creator = creator;
+                return keep;
+            }).ToList();
+            return keeps;
+        }
     }
 }

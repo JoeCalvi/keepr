@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS keeps(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT 'Keep Id',
   creatorId VARCHAR(255) NOT NULL COMMENT 'Keep Creator Id',
   name VARCHAR(50) NOT NULL COMMENT 'Keep Name',
-  description VARCHAR(150) NOT NULL COMMENT 'Keep Description',
+  description VARCHAR(300) NOT NULL COMMENT 'Keep Description',
   img VARCHAR(500) NOT NULL COMMENT 'Keep ImgUrl',
   views INT NOT NULL DEFAULT 0 COMMENT 'Total Keep Views',
   kept INT NOT NULL DEFAULT 0 COMMENT 'Number of Vaults Where Keep Exists',

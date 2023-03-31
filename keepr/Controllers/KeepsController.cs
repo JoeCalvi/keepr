@@ -30,5 +30,19 @@ namespace keepr.Controllers
               return BadRequest(e.Message);
             }
         }
+
+        [HttpGet]
+        public ActionResult<List<Keep>> GetAllKeeps() 
+        {
+            try 
+            {
+              List<Keep> keeps = _keepsService.GetAllKeeps();
+              return Ok(keeps);
+            }
+            catch (Exception e)
+            {
+              return BadRequest(e.Message);
+            }
+        }
     }
 }
