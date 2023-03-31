@@ -31,7 +31,7 @@ namespace keepr.Repositories
             WHERE id = @keepId;
             ";
 
-            _db.Execute(sql, new{keepId});
+            _db.Execute(sql, new { keepId });
         }
 
         internal int EditKeep(Keep updatedKeep)

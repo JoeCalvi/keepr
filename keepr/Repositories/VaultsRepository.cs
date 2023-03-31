@@ -24,6 +24,30 @@ namespace keepr.Repositories
             return vaultData;
         }
 
+        internal void DeleteVault(int vaultId)
+        {
+            string sql = @"
+            DELETE FROM vaults
+            WHERE id = @vaultId;
+            ";
+
+            _db.Execute(sql, new { vaultId });
+        }
+
+        internal int EditVault(Vault updatedVault)
+        {
+            string sql = @"
+            UPDATE vaults
+            SET
+            name = @name,
+            isPrivate = @isPrivate
+            WHERE id = @id;
+            ";
+
+            int rows = _db.Execute(sql, updatedVault);
+            return rows;
+        }
+
         internal Vault GetVaultById(int vaultId)
         {
             string sql = @"
