@@ -53,5 +53,11 @@ namespace keepr.Services
             if(keep == null) throw new Exception("Keep not found.");
             return keep;
         }
+
+        internal List<Keep> GetKeepsByProfileId(string profileId)
+        {
+            List<Keep> keeps = _repo.GetKeepsByProfileId(profileId);
+            return keeps;
+        }
     }
 }
