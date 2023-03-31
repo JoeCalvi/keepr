@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS keeps(
   description VARCHAR(150) NOT NULL COMMENT 'Keep Description',
   img VARCHAR(500) NOT NULL COMMENT 'Keep ImgUrl',
   views INT NOT NULL DEFAULT 0 COMMENT 'Total Keep Views',
+  kept INT NOT NULL DEFAULT 0 COMMENT 'Number of Vaults Where Keep Exists',
 
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';

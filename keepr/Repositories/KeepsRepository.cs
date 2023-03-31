@@ -8,5 +8,20 @@ namespace keepr.Repositories
         {
             _db = db;
         }
+
+        internal Keep CreateKeep(Keep keepData)
+        {
+            string sql = @"
+            INSERT INTO keeps
+            (creatorId, name, description, img, views, kept)
+            VALUES
+            (@creatorId, @name, @description, @img, @views, @kept);
+            SELECT LAST_INSERT_ID();
+            ";
+
+            int id = _db.ExecuteScalar<int>(sql, keepData);
+            keepData.Id = id;
+            return keepData;
+        }
     }
 }
