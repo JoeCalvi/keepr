@@ -15,6 +15,14 @@ namespace keepr.Services
             return keep;
         }
 
+        internal string DeleteKeep(int keepId, string userId)
+        {
+            Keep keep = this.GetKeepById(keepId);
+            if(keep.CreatorId != userId) throw new Exception("This keep does not belong to you.");
+            _repo.DeleteKeep(keepId);
+            return "Keep deleted.";
+        }
+
         internal Keep EditKeep(Keep keepData, string userId)
         {
             Keep originalKeep = this.GetKeepById(keepData.Id);
@@ -36,6 +44,7 @@ namespace keepr.Services
         internal Keep GetKeepById(int keepId)
         {
             Keep keep = _repo.GetKeepById(keepId);
+            if(keep == null) throw new Exception("Keep not found.");
             return keep;
         }
     }

@@ -24,6 +24,16 @@ namespace keepr.Repositories
             return keepData;
         }
 
+        internal void DeleteKeep(int keepId)
+        {
+            string sql = @"
+            DELETE FROM keeps
+            WHERE id = @keepId;
+            ";
+
+            _db.Execute(sql, new{keepId});
+        }
+
         internal int EditKeep(Keep updatedKeep)
         {
             string sql = @"
