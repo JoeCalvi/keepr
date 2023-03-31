@@ -10,5 +10,6 @@ namespace keepr.Models
         public string Img { get; set; }
         public int Views { get; set; }
         public int Kept { get; set; }
+        public int VaultKeepId { get; set; }
     }
 }

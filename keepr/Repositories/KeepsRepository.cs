@@ -13,9 +13,9 @@ namespace keepr.Repositories
         {
             string sql = @"
             INSERT INTO keeps
-            (creatorId, name, description, img, views, kept)
+            (creatorId, name, description, img, views, kept, vaultKeepId)
             VALUES
-            (@creatorId, @name, @description, @img, @views, @kept);
+            (@creatorId, @name, @description, @img, @views, @kept, @vaultKeepId);
             SELECT LAST_INSERT_ID();
             ";
 
@@ -62,6 +62,29 @@ namespace keepr.Repositories
                 keep.Creator = creator;
                 return keep;
             }).ToList();
+            return keeps;
+        }
+
+        internal List<Keep> GetKeepsByVaultId(int vaultId)
+        {
+            string sql = @"
+            SELECT
+            keep.*,
+            vk.*,
+            acct.*
+            FROM keeps keep
+            JOIN vaultkeeps vk ON keep.id = vk.keepId
+            JOIN accounts acct ON keep.creatorId = acct.id
+            WHERE vk.vaultId = @vaultId;
+            ";
+
+            List<Keep> keeps = _db.Query<Keep, VaultKeep, Profile, Keep>(sql, (keep, vaultkeep, creator) => {
+                keep.CreatorId = creator.Id;
+                keep.Creator = creator;
+                keep.Id = vaultkeep.KeepId;
+                keep.VaultKeepId = vaultkeep.Id;
+                return keep;
+            }, new { vaultId }).ToList();
             return keeps;
         }
 

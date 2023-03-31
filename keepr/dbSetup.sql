@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS keeps(
   img VARCHAR(500) NOT NULL COMMENT 'Keep ImgUrl',
   views INT NOT NULL DEFAULT 0 COMMENT 'Total Keep Views',
   kept INT NOT NULL DEFAULT 0 COMMENT 'Number of Vaults Where Keep Exists',
+  vaultKeepId INT NOT NULL COMMENT 'VaultKeep Id',
 
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
@@ -32,3 +33,18 @@ CREATE TABLE IF NOT EXISTS vaults(
 
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
+
+DROP TABLE IF EXISTS vaults;
+
+CREATE TABLE IF NOT EXISTS vaultkeeps(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT 'VaultKeep Id',
+  creatorId VARCHAR(255) NOT NULL COMMENT 'VaultKeep Creator Id',
+  vaultId INT NOT NULL COMMENT 'Vault Id',
+  keepId INT NOT NULL COMMENT 'Keep Id',
+
+  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
+  FOREIGN KEY (vaultId) REFERENCES vaults(id) ON DELETE CASCADE,
+  FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
+
+DROP TABLE IF EXISTS vaultkeeps;

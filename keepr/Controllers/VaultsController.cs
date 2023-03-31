@@ -6,11 +6,13 @@ namespace keepr.Controllers
     {
         private readonly VaultsService _vaultsService;
         private readonly Auth0Provider _auth;
+        private readonly KeepsService _keepsService;
 
-        public VaultsController(VaultsService vaultsService, Auth0Provider auth)
+        public VaultsController(VaultsService vaultsService, Auth0Provider auth, VaultkeepsService vaultkeepsService, KeepsService keepsService)
         {
             _vaultsService = vaultsService;
             _auth = auth;
+            _keepsService = keepsService;
         }
 
         [HttpPost]
@@ -43,6 +45,20 @@ namespace keepr.Controllers
             {
               return BadRequest(e.Message);
             }
+        }
+
+        [HttpGet("{vaultId}/keeps")]
+        public ActionResult<List<Keep>> GetKeepsByVaultId(int vaultId)
+        {
+          try 
+          {
+            List<Keep> keeps = _keepsService.GetKeepsByVaultId(vaultId);
+            return Ok(keeps);
+          }
+          catch (Exception e)
+          {
+            return BadRequest(e.Message);
+          }
         }
 
         [HttpPut("{vaultId}")]
