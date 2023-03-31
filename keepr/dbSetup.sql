@@ -21,3 +21,14 @@ CREATE TABLE IF NOT EXISTS keeps(
 ) default charset utf8 COMMENT '';
 
 DROP TABLE IF EXISTS keeps;
+
+CREATE TABLE IF NOT EXISTS vaults(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT 'Vault Id',
+  creatorId VARCHAR(255) NOT NULL COMMENT 'Vault Creator Id',
+  name VARCHAR(50) NOT NULL COMMENT 'Vault Name',
+  description VARCHAR(300) NOT NULL COMMENT 'Vault Description',
+  img VARCHAR(500) NOT NULL COMMENT 'Vault Image',
+  isPrivate BOOLEAN NOT NULL DEFAULT FALSE,
+
+  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
