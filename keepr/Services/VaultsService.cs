@@ -41,5 +41,11 @@ namespace keepr.Services
             if(vault == null) throw new Exception("Vault not found.");
             return vault;
         }
+
+        internal List<Vault> GetVaultsByProfileId(string profileId)
+        {
+            List<Vault> vaults = _repo.GetVaultsByProfileId(profileId);
+            return vaults;
+        }
     }
 }
