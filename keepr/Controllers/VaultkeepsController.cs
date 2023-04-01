@@ -5,12 +5,14 @@ namespace keepr.Controllers
     public class VaultkeepsController : ControllerBase
     {
         private readonly VaultkeepsService _vaultkeepsService;
+        private readonly VaultsService _vaultsService;
         private readonly Auth0Provider _auth;
 
-        public VaultkeepsController(VaultkeepsService vaultkeepsService, Auth0Provider auth)
+        public VaultkeepsController(VaultkeepsService vaultkeepsService, Auth0Provider auth, VaultsService vaultsService)
         {
             _vaultkeepsService = vaultkeepsService;
             _auth = auth;
+            _vaultsService = vaultsService;
         }
 
         [HttpPost]
@@ -21,6 +23,8 @@ namespace keepr.Controllers
             {
               Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
               vaultKeepData.CreatorId = userInfo.Id;
+              Vault vault = _vaultsService.GetVaultById(vaultKeepData.VaultId);
+              if(vault.CreatorId != userInfo.Id) throw new Exception("You cannot store keeps in this vault.");
               VaultKeep vaultKeep = _vaultkeepsService.CreateVaultKeep(vaultKeepData);
               return Ok(vaultKeep);
             }
