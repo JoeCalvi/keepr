@@ -17,6 +17,10 @@ namespace keepr.Repositories
             VALUES
             (@creatorId, @vaultId, @keepId);
             SELECT LAST_INSERT_ID();
+
+            UPDATE keeps
+            SET kept = kept + 1
+            WHERE id = @keepId;
             ";
 
             int id = _db.ExecuteScalar<int>(sql, vaultKeepData);
@@ -24,14 +28,18 @@ namespace keepr.Repositories
             return vaultKeepData;
         }
 
-        internal void DeleteVaultKeep(int vaultKeepId)
+        internal void DeleteVaultKeep(int vaultKeepId, int keepId)
         {
             string sql = @"
             DELETE FROM vaultkeeps
             WHERE id = @vaultKeepId;
+
+            UPDATE keeps
+            SET kept = kept - 1
+            WHERE id = @keepId;
             ";
 
-            _db.Execute(sql, new { vaultKeepId });
+            _db.Execute(sql, new { vaultKeepId, keepId });
         }
 
         internal VaultKeep GetVaultKeepById(int vaultKeepId)

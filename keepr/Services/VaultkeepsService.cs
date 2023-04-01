@@ -3,10 +3,12 @@ namespace keepr.Services
     public class VaultkeepsService
     {
         private readonly VaultkeepsRepository _repo;
+        private readonly KeepsRepository _keepsRepo;
 
-        public VaultkeepsService(VaultkeepsRepository repo)
+        public VaultkeepsService(VaultkeepsRepository repo, KeepsRepository keepRepo, KeepsRepository keepsRepo)
         {
             _repo = repo;
+            _keepsRepo = keepsRepo;
         }
 
         internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
@@ -19,7 +21,8 @@ namespace keepr.Services
         {
             VaultKeep vaultKeep = this.GetVaultKeepById(vaultKeepId);
             if(vaultKeep.CreatorId != userId) throw new Exception("You are not the owner of this relationship.");
-            _repo.DeleteVaultKeep(vaultKeepId);
+            Keep keep = _keepsRepo.GetKeepById(vaultKeep.KeepId);
+            _repo.DeleteVaultKeep(vaultKeepId, keep.Id);
             return "VaultKeep deleted.";
         }
 

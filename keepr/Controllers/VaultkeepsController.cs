@@ -6,13 +6,15 @@ namespace keepr.Controllers
     {
         private readonly VaultkeepsService _vaultkeepsService;
         private readonly VaultsService _vaultsService;
+        private readonly KeepsService _keepsService;
         private readonly Auth0Provider _auth;
 
-        public VaultkeepsController(VaultkeepsService vaultkeepsService, Auth0Provider auth, VaultsService vaultsService)
+        public VaultkeepsController(VaultkeepsService vaultkeepsService, Auth0Provider auth, VaultsService vaultsService, KeepsService keepsService)
         {
             _vaultkeepsService = vaultkeepsService;
             _auth = auth;
             _vaultsService = vaultsService;
+            _keepsService = keepsService;
         }
 
         [HttpPost]
