@@ -34,11 +34,13 @@ namespace keepr.Controllers
         }
 
         [HttpGet("{vaultId}")]
-        public ActionResult<Vault> GetVaultById(int vaultId)
+        public async Task<ActionResult<Vault>> GetVaultById(int vaultId)
         {
             try 
             {
+              Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
               Vault vault = _vaultsService.GetVaultById(vaultId);
+              if(vault.IsPrivate == true && vault.CreatorId != userInfo.Id) throw new Exception("This vault is private.");
               return Ok(vault);
             }
             catch (Exception e)
@@ -48,10 +50,13 @@ namespace keepr.Controllers
         }
 
         [HttpGet("{vaultId}/keeps")]
-        public ActionResult<List<Keep>> GetKeepsByVaultId(int vaultId)
+        public async Task<ActionResult<List<Keep>>> GetKeepsByVaultId(int vaultId)
         {
           try 
           {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            Vault vault = _vaultsService.GetVaultById(vaultId);
+            if(vault.IsPrivate == true && vault.CreatorId != userInfo.Id) throw new Exception("This vault is private.");
             List<Keep> keeps = _keepsService.GetKeepsByVaultId(vaultId);
             return Ok(keeps);
           }

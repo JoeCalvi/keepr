@@ -46,10 +46,11 @@ namespace keepr.Controllers
         }
 
         [HttpGet("{profileId}/vaults")]
-        public ActionResult<List<Vault>> GetVaultsByProfileId(string profileId)
+        public async Task<ActionResult<List<Vault>>> GetVaultsByProfileId(string profileId)
         {
             try 
             {
+              Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
               List<Vault> vaults = _vaultsService.GetVaultsByProfileId(profileId);
               return Ok(vaults);
             }
