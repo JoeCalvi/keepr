@@ -6,8 +6,10 @@
             <span>
                 {{ keep?.name }}
             </span>
-            <img v-if="keep?.creatorId != account?.id" class="creator-picture rounded-circle" :src="keep?.creator.picture"
-                :alt="keep?.creator.picture">
+            <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
+                <img v-if="keep?.creatorId != account?.id" class="creator-picture rounded-circle"
+                    :src="keep?.creator.picture" :alt="keep?.creator.picture">
+            </router-link>
             <div v-if="keep?.creatorId == account?.id" class="dropstart">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="edit-keep">...</span>

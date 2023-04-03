@@ -5,6 +5,9 @@ export const AppState = reactive({
   user: {},
   /** @type {import('./models/Account.js').Account} */
   account: {},
+  profile: null,
   keeps: [],
-  activeKeep: null
+  activeKeep: null,
+  vaults: [],
+  activeVault: null
 })

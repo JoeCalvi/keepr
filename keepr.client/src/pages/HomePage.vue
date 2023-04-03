@@ -20,7 +20,7 @@
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { keepsService } from "../services/KeepsService.js";
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, onUnmounted } from 'vue';
 import { AppState } from '../AppState.js';
 import KeepCard from '../components/KeepCard.vue';
 import Modal from '../components/Modal.vue';
@@ -40,6 +40,11 @@ export default {
     onMounted(() => {
       getAllKeeps();
     });
+
+    onUnmounted(() => {
+      AppState.keeps = []
+    });
+
     return {
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.keeps)

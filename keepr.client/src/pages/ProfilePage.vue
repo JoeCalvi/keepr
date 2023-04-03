@@ -8,9 +8,9 @@
         </div>
       </div>
       <div class="col-lg-12 d-flex flex-column align-items-center user-details">
-        <img class="profile-picture rounded-circle" :src="account?.picture" alt="">
+        <img class="profile-picture rounded-circle" :src="profile?.picture" alt="">
         <div class="mt-3">
-          <h1>{{ account?.name }}</h1>
+          <h1>{{ profile?.name }}</h1>
         </div>
         <div>
           <span>5 vaults</span> | <span>{{ keeps?.length }} keeps</span>
@@ -27,29 +27,38 @@
       </div>
     </div>
   </div>
-
-  <Modal id="keep-details">
-    <KeepDetails />
-  </Modal>
 </template>
 
 <script>
-import { computed, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, watchEffect, onUnmounted } from 'vue'
 import { AppState } from '../AppState.js'
 import KeepCard from '../components/KeepCard.vue';
 import Modal from '../components/Modal.vue';
 import KeepDetails from '../components/KeepDetails.vue';
+import { useRoute } from 'vue-router';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
-import { accountService } from '../services/AccountService.js';
 import { keepsService } from '../services/KeepsService.js';
+import { profilesService } from "../services/ProfilesService.js";
 
 export default {
   setup() {
+    const route = useRoute()
 
-    async function getMyVaults() {
+    async function getProfileById() {
       try {
-        await accountService.getMyVaults();
+        const profileId = route.params.profileId
+        await profilesService.getProfileById(profileId)
+      } catch (error) {
+        logger.error(error)
+        Pop.error(error)
+      }
+    }
+
+    async function getKeepsByProfileId() {
+      try {
+        const profileId = route.params.profileId
+        await keepsService.getKeepsByProfileId(profileId)
       } catch (error) {
         logger.error(error)
         Pop.error(error)
@@ -57,19 +66,24 @@ export default {
     }
 
     onMounted(() => {
-      getMyVaults();
-      keepsService.getAllKeeps()
+      getKeepsByProfileId();
+    });
+
+    watchEffect(() => {
+      if (AppState.profile == null) {
+        getProfileById()
+      }
     })
 
     onUnmounted(() => {
-      AppState.vaults = [];
       AppState.keeps = [];
-    })
+      AppState.profile = null;
+    });
 
     return {
       account: computed(() => AppState.account),
-      vaults: computed(() => AppState.vaults),
-      keeps: computed(() => AppState.keeps?.filter(k => k.creatorId == AppState.account?.id))
+      profile: computed(() => AppState.profile),
+      keeps: computed(() => AppState.keeps)
     };
   },
   components: { KeepCard, Modal, KeepDetails }
@@ -112,3 +126,4 @@ $m-gap: 20px;
   color: #000000;
 }
 </style>
+
