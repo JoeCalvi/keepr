@@ -1,32 +1,21 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+  <nav class="navbar d-flex align-items-center justify-content-between px-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="glass-card d-flex align-items-center justify-content-center selectable">Home</div>
+      <div class="dropdown">
+        <button class="btn dropdown-style dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Create
+        </button>
+        <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
+          <li><button class="dropdown-item" style="border-bottom: 1px solid #2D3436;" type="button">new keep</button></li>
+          <li><button class="dropdown-item" type="button">new vault</button></li>
+        </ul>
       </div>
-    </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
-        </li>
-      </ul>
-      <!-- LOGIN COMPONENT HERE -->
-      <Login />
     </div>
+    <div>
+      <img class="logo" src="../assets/img/Keepr logo.png" alt="">
+    </div>
+    <Login />
   </nav>
 </template>
 
@@ -41,18 +30,38 @@ export default {
 </script>
 
 <style scoped>
-a:hover {
-  text-decoration: none;
+.navbar {
+  background-color: #FEF6F0;
+  color: #2D2D2D;
+  height: 90px;
+  font-family: Oxygen;
+  font-weight: bold;
+  font-size: 23px;
+  filter: drop-shadow(0px 0px 9px rgba(0, 0, 0, 0.25));
 }
 
-.nav-link {
-  text-transform: uppercase;
+.create-options {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: #2D3436;
 }
 
-.navbar-nav .router-link-exact-active {
-  border-bottom: 2px solid var(--bs-success);
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+.dropdown-item:hover {
+  background-color: #d0c8da;
+}
+
+.dropdown-style {
+  background-color: #FEF6F0;
+  font-family: Oxygen;
+  font-weight: bold;
+  font-size: 23px;
+}
+
+.logo {
+  transform: translateX(-75px);
 }
 
 @media screen and (min-width: 768px) {
@@ -61,4 +70,12 @@ a:hover {
   }
 }
 
+.glass-card {
+  background: #E9D8D6;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  color: #2D2D2D;
+  height: 39px;
+  width: 99px;
+}
 </style>
