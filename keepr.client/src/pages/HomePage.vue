@@ -10,6 +10,10 @@
       </div>
     </div>
   </div>
+
+  <Modal id="keep-details">
+    <KeepDetails />
+  </Modal>
 </template>
 
 <script>
@@ -19,6 +23,8 @@ import { keepsService } from "../services/KeepsService.js";
 import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState.js';
 import KeepCard from '../components/KeepCard.vue';
+import Modal from '../components/Modal.vue';
+import KeepDetails from '../components/KeepDetails.vue';
 
 export default {
   setup() {
@@ -39,7 +45,7 @@ export default {
       keeps: computed(() => AppState.keeps)
     };
   },
-  components: { KeepCard }
+  components: { KeepCard, Modal, KeepDetails }
 }
 </script>
 

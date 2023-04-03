@@ -1,6 +1,7 @@
 <template>
     <div class="KeepCard">
-        <img class="img-fluid keep selectable" :src="keep?.img" :alt="keep?.img">
+        <img @click="setActiveKeep(`${keep?.id}`)" class="img-fluid keep selectable" :src="keep?.img" :alt="keep?.img"
+            data-bs-toggle="modal" data-bs-target="#keep-details">
         <div class="keep-info d-flex justify-content-between align-items-center px-2">
             <span>
                 {{ keep?.name }}
@@ -12,12 +13,26 @@
 
 
 <script>
+import { AppState } from '../AppState';
 import { Keep } from '../models/Keep.js';
+import { keepsService } from '../services/KeepsService';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
 
 export default {
     props: { keep: { type: Keep, required: true } },
     setup() {
-        return {}
+        return {
+            async setActiveKeep(keepId) {
+                try {
+                    AppState.activeKeep = null
+                    await keepsService.setActiveKeep(keepId)
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+                }
+            }
+        }
     }
 }
 </script>

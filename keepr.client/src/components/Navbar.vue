@@ -1,7 +1,9 @@
 <template>
   <nav class="navbar d-flex align-items-center justify-content-between px-3">
     <div class="d-flex align-items-center gap-2">
-      <div class="glass-card d-flex align-items-center justify-content-center selectable">Home</div>
+      <router-link :to="{ name: 'Home' }">
+        <div class="glass-card d-flex align-items-center justify-content-center selectable">Home</div>
+      </router-link>
       <div class="dropdown">
         <button class="btn dropdown-style dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Create
