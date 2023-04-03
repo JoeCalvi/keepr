@@ -18,6 +18,11 @@
       </div>
       <div class="col-lg-10">
         <h3>Vaults</h3>
+        <div class="row">
+          <div v-for="vault in vaults" class="col-lg-3 col-md-4 col-sm-6 my-2">
+            <VaultCard :vault="vault" />
+          </div>
+        </div>
       </div>
       <div class="col-lg-10">
         <h3>Keeps</h3>
@@ -37,6 +42,7 @@
 import { computed, onMounted, onUnmounted } from 'vue'
 import { AppState } from '../AppState.js'
 import KeepCard from '../components/KeepCard.vue';
+import VaultCard from '../components/VaultCard.vue';
 import Modal from '../components/Modal.vue';
 import KeepDetails from '../components/KeepDetails.vue';
 import { logger } from '../utils/Logger.js';
@@ -72,7 +78,7 @@ export default {
       keeps: computed(() => AppState.keeps?.filter(k => k.creatorId == AppState.account?.id))
     };
   },
-  components: { KeepCard, Modal, KeepDetails }
+  components: { KeepCard, Modal, KeepDetails, VaultCard }
 }
 </script>
 
