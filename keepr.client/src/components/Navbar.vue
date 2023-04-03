@@ -13,7 +13,7 @@
       </div>
     </div>
     <div>
-      <img class="logo" src="../assets/img/Keepr logo.png" alt="">
+      <img class="logo" src="../public/img/Keepr logo.png" alt="">
     </div>
     <Login />
   </nav>
