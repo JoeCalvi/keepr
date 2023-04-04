@@ -25,7 +25,7 @@ class KeepsService {
 
     async createKeep(keepData) {
         const res = await api.post('api/keeps', keepData)
-        logger.log(res.data)
+        AppState.keeps.unshift(new Keep(res.data))
     }
 }
 
