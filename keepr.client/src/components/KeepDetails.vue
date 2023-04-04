@@ -24,8 +24,10 @@
                                         <span class="">vault</span>
                                     </button>
                                     <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
-                                        <li><button class="dropdown-item" type="button">vault 1</button></li>
-                                        <li><button class="dropdown-item" type="button">vault 2</button></li>
+                                        <div v-for="vault in vaults">
+                                            <li><button class="dropdown-item" type="button">{{
+                                                vault?.name }}</button></li>
+                                        </div>
                                     </ul>
                                 </div>
                                 <button class="btn save-button-m">save</button>
@@ -67,8 +69,10 @@
                                         <span class="vault-name">vault</span>
                                     </button>
                                     <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
-                                        <li v-for="vault in vaults"><button class="dropdown-item" type="button">{{
-                                            vault?.name }}</button></li>
+                                        <div v-for="vault in vaults">
+                                            <li><button class="dropdown-item" type="button">{{
+                                                vault?.name }}</button></li>
+                                        </div>
                                     </ul>
                                 </div>
                                 <button class="btn save-button">save</button>
@@ -95,11 +99,12 @@
 <script>
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
+
 export default {
     setup() {
         return {
             keep: computed(() => AppState.activeKeep),
-            vaults: computed(() => AppState.vaults.filter(v => v.creatorId == AppState.account?.id))
+            vaults: computed(() => AppState.myVaults)
         }
     }
 }

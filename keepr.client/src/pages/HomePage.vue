@@ -20,12 +20,12 @@
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { keepsService } from "../services/KeepsService.js";
-import { computed, onMounted, onUnmounted } from 'vue';
+import { computed, onMounted, onUnmounted, watchEffect } from 'vue';
 import { AppState } from '../AppState.js';
 import KeepCard from '../components/KeepCard.vue';
 import Modal from '../components/Modal.vue';
 import KeepDetails from '../components/KeepDetails.vue';
-import { vaultsService } from '../services/VaultsService';
+import { accountService } from '../services/AccountService.js';
 
 export default {
   setup() {
@@ -39,19 +39,16 @@ export default {
       }
     }
 
-    async function getMyVaults() {
-      try {
-        await vaultsService.getMyVaults()
-      } catch (error) {
-        logger.error(error)
-        Pop.error(error)
-      }
-    }
-
     onMounted(() => {
       getAllKeeps();
-      getMyVaults();
+
     });
+
+    watchEffect(() => {
+      if (AppState.account?.id) {
+        accountService.getMyVaults()
+      }
+    })
 
     onUnmounted(() => {
       AppState.keeps = [];

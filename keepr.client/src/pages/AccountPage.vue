@@ -76,7 +76,7 @@ export default {
 
     return {
       account: computed(() => AppState.account),
-      vaults: computed(() => AppState.vaults),
+      vaults: computed(() => AppState.myVaults),
       keeps: computed(() => AppState.keeps?.filter(k => k.creatorId == AppState.account?.id))
     };
   },
