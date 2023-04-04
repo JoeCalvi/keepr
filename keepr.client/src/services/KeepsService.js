@@ -14,7 +14,7 @@ class KeepsService {
     async getKeepsByProfileId(profileId) {
         const res = await api.get(`api/profiles/${profileId}/keeps`)
         AppState.keeps = res.data.map(r => new Keep(r))
-        logger.log(AppState.keeps)
+        // logger.log(AppState.keeps)
     }
 
     async setActiveKeep(keepId) {
@@ -26,6 +26,7 @@ class KeepsService {
     async createKeep(keepData) {
         const res = await api.post('api/keeps', keepData)
         AppState.keeps.unshift(new Keep(res.data))
+        // logger.log(AppState.keeps)
     }
 }
 

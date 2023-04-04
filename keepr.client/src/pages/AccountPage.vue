@@ -13,7 +13,7 @@
           <h1>{{ account?.name }}</h1>
         </div>
         <div>
-          <span>5 vaults</span> | <span>{{ keeps?.length }} keeps</span>
+          <span>{{ vaults?.length }} vaults</span> | <span>{{ keeps?.length }} keeps</span>
         </div>
       </div>
       <div class="col-lg-10">

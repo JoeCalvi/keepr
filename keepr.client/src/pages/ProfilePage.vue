@@ -13,11 +13,16 @@
           <h1>{{ profile?.name }}</h1>
         </div>
         <div>
-          <span>5 vaults</span> | <span>{{ keeps?.length }} keeps</span>
+          <span>{{ vaults?.length }} vaults</span> | <span>{{ keeps?.length }} keeps</span>
         </div>
       </div>
       <div class="col-lg-10">
         <h3>Vaults</h3>
+        <div class="row">
+          <div v-for="vault in vaults" class="col-lg-3 col-md-4 col-sm-6 my-2">
+            <VaultCard :vault="vault" />
+          </div>
+        </div>
       </div>
       <div class="col-lg-10">
         <h3>Keeps</h3>
@@ -40,6 +45,8 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { keepsService } from '../services/KeepsService.js';
 import { profilesService } from "../services/ProfilesService.js";
+import { vaultsService } from '../services/VaultsService.js';
+import VaultCard from '../components/VaultCard.vue';
 
 export default {
   setup() {
@@ -65,28 +72,41 @@ export default {
       }
     }
 
+    async function getVaultsByProfileId() {
+      try {
+        const profileId = route.params.profileId
+        await vaultsService.getVaultsByProfileId(profileId)
+      } catch (error) {
+        logger.error(error)
+        Pop.error(error)
+      }
+    }
+
     onMounted(() => {
       getKeepsByProfileId();
+      getVaultsByProfileId();
     });
 
     watchEffect(() => {
       if (AppState.profile == null) {
-        getProfileById()
+        getProfileById();
       }
     })
 
     onUnmounted(() => {
       AppState.keeps = [];
+      AppState.vaults = [];
       AppState.profile = null;
     });
 
     return {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
-      keeps: computed(() => AppState.keeps)
+      keeps: computed(() => AppState.keeps),
+      vaults: computed(() => AppState.vaults)
     };
   },
-  components: { KeepCard, Modal, KeepDetails }
+  components: { KeepCard, Modal, KeepDetails, VaultCard }
 }
 </script>
 

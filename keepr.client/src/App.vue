@@ -11,6 +11,10 @@
   <Modal id="add-keep">
     <AddKeepForm />
   </Modal>
+
+  <Modal id="add-vault">
+    <AddVaultForm />
+  </Modal>
 </template>
 
 <script>
@@ -19,6 +23,7 @@ import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import Modal from "./components/Modal.vue";
 import AddKeepForm from "./components/AddKeepForm.vue";
+import AddVaultForm from './components/AddVaultForm.vue';
 
 export default {
   setup() {
@@ -26,7 +31,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, Modal, AddKeepForm }
+  components: { Navbar, Modal, AddKeepForm, AddVaultForm }
 }
 </script>
 <style lang="scss">
