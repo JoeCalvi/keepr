@@ -22,6 +22,11 @@ class KeepsService {
         AppState.activeKeep = new Keep(res.data)
         // logger.log(AppState.activeKeep)
     }
+
+    async createKeep(keepData) {
+        const res = await api.post('api/keeps', keepData)
+        logger.log(res.data)
+    }
 }
 
 export const keepsService = new KeepsService();

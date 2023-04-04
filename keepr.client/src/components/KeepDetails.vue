@@ -1,83 +1,87 @@
 <template>
-    <div class="modal-content modal-keep-details">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 d-flex flex-column justify-content-between d-lg-none keep-image-m"
-                    :style="`background-image: url(${keep?.img})`">
-                    <div class="row justify-content-center align-items-center mt-4 counts-m">
-                        <div class="col-6 d-flex justify-content-end">
-                            <span class="d-flex gap-2 align-items-center"><i class="mdi mdi-eye-outline"></i><span>{{
-                                keep?.views
-                            }}</span></span>
-                        </div>
-                        <div class="col-6 d-flex justify-content-start">
-                            <span class="d-flex gap-2 align-items-center"><i
-                                    class="mdi mdi-alpha-k-box-outline"></i><span>{{ keep?.kept }}</span></span>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="d-flex justify-content-evenly">
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle vault-name-m" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <span class="">vault</span>
-                                </button>
-                                <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
-                                    <li><button class="dropdown-item" type="button">vault 1</button></li>
-                                    <li><button class="dropdown-item" type="button">vault 2</button></li>
-                                </ul>
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content modal-keep-details">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 d-flex flex-column justify-content-between d-lg-none keep-image-m"
+                        :style="`background-image: url(${keep?.img})`">
+                        <div class="row justify-content-center align-items-center mt-4 counts-m">
+                            <div class="col-6 d-flex justify-content-end">
+                                <span class="d-flex gap-2 align-items-center"><i class="mdi mdi-eye-outline"></i><span>{{
+                                    keep?.views
+                                }}</span></span>
                             </div>
-                            <button class="btn save-button-m">save</button>
+                            <div class="col-6 d-flex justify-content-start">
+                                <span class="d-flex gap-2 align-items-center"><i
+                                        class="mdi mdi-alpha-k-box-outline"></i><span>{{ keep?.kept }}</span></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="d-flex justify-content-evenly">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle vault-name-m" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <span class="">vault</span>
+                                    </button>
+                                    <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
+                                        <li><button class="dropdown-item" type="button">vault 1</button></li>
+                                        <li><button class="dropdown-item" type="button">vault 2</button></li>
+                                    </ul>
+                                </div>
+                                <button class="btn save-button-m">save</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row align-items-center d-none d-lg-flex">
-                <div class="col-lg-6 keep-image" :style="`background-image: url(${keep?.img})`"></div>
-                <div class="col-lg-6 keep-info d-flex flex-column justify-content-between">
-                    <div class="row justify-content-center align-items-center mt-4">
-                        <div class="col-6 d-flex justify-content-end">
-                            <span class="d-flex gap-2 align-items-center"><i
-                                    class="mdi mdi-eye-outline eye-size"></i><span>{{ keep?.views
-                                    }}</span></span>
-                        </div>
-                        <div class="col-6 d-flex justify-content-start">
-                            <span class="d-flex gap-2 align-items-center"><i
-                                    class="mdi mdi-alpha-k-box-outline eye-size"></i><span>{{ keep?.kept }}</span></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div>
-                                <h1 class="keep-name">{{ keep?.name }}</h1>
-                                <p class="keep-description">
-                                    {{ keep?.description }}
-                                </p>
+                <div class="row align-items-center d-none d-lg-flex">
+                    <div class="col-lg-6 keep-image" :style="`background-image: url(${keep?.img})`"></div>
+                    <div class="col-lg-6 keep-info d-flex flex-column justify-content-between">
+                        <div class="row justify-content-center align-items-center mt-4">
+                            <div class="col-6 d-flex justify-content-end">
+                                <span class="d-flex gap-2 align-items-center"><i
+                                        class="mdi mdi-eye-outline eye-size"></i><span>{{ keep?.views
+                                        }}</span></span>
+                            </div>
+                            <div class="col-6 d-flex justify-content-start">
+                                <span class="d-flex gap-2 align-items-center"><i
+                                        class="mdi mdi-alpha-k-box-outline eye-size"></i><span>{{ keep?.kept
+                                        }}</span></span>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mb-4 flex-xl-row flex-xs-column">
-                        <div
-                            class="col-xl-6 order-xl-1 order-xs-2 d-flex align-items-center justify-content-xl-end justify-content-sm-center gap-2 mb-3">
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <span class="vault-name">vault</span>
-                                </button>
-                                <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
-                                    <li><button class="dropdown-item" type="button">vault 1</button></li>
-                                    <li><button class="dropdown-item" type="button">vault 2</button></li>
-                                </ul>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div>
+                                    <h1 class="keep-name">{{ keep?.name }}</h1>
+                                    <p class="keep-description">
+                                        {{ keep?.description }}
+                                    </p>
+                                </div>
                             </div>
-                            <button class="btn save-button">save</button>
                         </div>
-                        <div
-                            class="d-none d-sm-flex col-xl-6 order-xl-2 order-xs-1 align-items-center justify-content-xl-start justify-content-sm-center gap-2 mb-3">
-                            <div>
-                                <img class="creator-picture rounded-circle img-fluid" :src="keep?.creator.picture" alt="">
+                        <div class="row mb-4 flex-xl-row flex-xs-column">
+                            <div
+                                class="col-xl-6 order-xl-1 order-xs-2 d-flex align-items-center justify-content-xl-end justify-content-sm-center gap-2 mb-3">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <span class="vault-name">vault</span>
+                                    </button>
+                                    <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
+                                        <li><button class="dropdown-item" type="button">vault 1</button></li>
+                                        <li><button class="dropdown-item" type="button">vault 2</button></li>
+                                    </ul>
+                                </div>
+                                <button class="btn save-button">save</button>
                             </div>
-                            <div class="creator-name">
-                                <span>{{ keep?.creator.name }}</span>
+                            <div
+                                class="d-none d-sm-flex col-xl-6 order-xl-2 order-xs-1 align-items-center justify-content-xl-start justify-content-sm-center gap-2 mb-3">
+                                <div>
+                                    <img class="creator-picture rounded-circle img-fluid" :src="keep?.creator.picture"
+                                        alt="">
+                                </div>
+                                <div class="creator-name">
+                                    <span>{{ keep?.creator.name }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>

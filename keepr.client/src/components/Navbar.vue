@@ -9,7 +9,8 @@
           Create
         </button>
         <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
-          <li><button class="dropdown-item" style="border-bottom: 1px solid #2D3436;" type="button">new keep</button></li>
+          <li><button class="dropdown-item" style="border-bottom: 1px solid #2D3436;" type="button" data-bs-toggle="modal"
+              data-bs-target="#add-keep">new keep</button></li>
           <li><button class="dropdown-item" type="button">new vault</button></li>
         </ul>
       </div>
@@ -22,7 +23,9 @@
 </template>
 
 <script>
+
 import Login from './Login.vue'
+
 export default {
   setup() {
     return {}

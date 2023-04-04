@@ -7,12 +7,18 @@
   </main>
   <footer>
   </footer>
+
+  <Modal id="add-keep">
+    <AddKeepForm />
+  </Modal>
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import Modal from "./components/Modal.vue";
+import AddKeepForm from "./components/AddKeepForm.vue";
 
 export default {
   setup() {
@@ -20,7 +26,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Navbar, Modal, AddKeepForm }
 }
 </script>
 <style lang="scss">

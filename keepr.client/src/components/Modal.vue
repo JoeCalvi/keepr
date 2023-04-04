@@ -1,9 +1,7 @@
 <template>
-    <div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <slot>
-            </slot>
-        </div>
+    <div class="modal fade" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <slot>
+        </slot>
     </div>
 </template>
 
