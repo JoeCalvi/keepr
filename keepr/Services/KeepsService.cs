@@ -51,7 +51,6 @@ namespace keepr.Services
         {
             Keep keep = _repo.GetKeepById(keepId);
             if(keep == null) throw new Exception("Keep not found.");
-            keep.Views++;
             return keep;
         }
 

@@ -37,6 +37,7 @@ export default {
     setup() {
         return {
             account: computed(() => AppState.account),
+
             async setActiveKeep(keepId) {
                 try {
                     AppState.activeKeep = null

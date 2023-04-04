@@ -91,12 +91,17 @@ namespace keepr.Repositories
         internal Keep GetKeepById(int keepId)
         {
             string sql = @"
+            UPDATE keeps keep
+            SET keep.views = keep.views + 1
+            WHERE keep.id = @keepId;
+
             SELECT 
             keep.*,
             acct.*
             FROM keeps keep
             JOIN accounts acct ON keep.creatorId = acct.id
             WHERE keep.id = @keepId;
+
             ";
 
             Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, creator) => {
