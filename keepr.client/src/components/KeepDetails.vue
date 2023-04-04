@@ -1,18 +1,49 @@
 <template>
     <div class="modal-content modal-keep-details">
         <div class="container-fluid">
-            <div class="row d-flex align-items-center">
+            <div class="row">
+                <div class="col-12 d-flex flex-column justify-content-between d-lg-none keep-image-m"
+                    :style="`background-image: url(${keep?.img})`">
+                    <div class="row justify-content-center align-items-center mt-4 counts-m">
+                        <div class="col-6 d-flex justify-content-end">
+                            <span class="d-flex gap-2 align-items-center"><i class="mdi mdi-eye-outline"></i><span>{{
+                                keep?.views
+                            }}</span></span>
+                        </div>
+                        <div class="col-6 d-flex justify-content-start">
+                            <span class="d-flex gap-2 align-items-center"><i
+                                    class="mdi mdi-alpha-k-box-outline"></i><span>{{ keep?.kept }}</span></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="d-flex justify-content-evenly">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle vault-name-m" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <span class="">vault</span>
+                                </button>
+                                <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
+                                    <li><button class="dropdown-item" type="button">vault 1</button></li>
+                                    <li><button class="dropdown-item" type="button">vault 2</button></li>
+                                </ul>
+                            </div>
+                            <button class="btn save-button-m">save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center d-none d-lg-flex">
                 <div class="col-lg-6 keep-image" :style="`background-image: url(${keep?.img})`"></div>
                 <div class="col-lg-6 keep-info d-flex flex-column justify-content-between">
-                    <div class="row justify-content-center mt-4">
-                        <div class="col-lg-6 d-flex justify-content-end">
+                    <div class="row justify-content-center align-items-center mt-4">
+                        <div class="col-6 d-flex justify-content-end">
                             <span class="d-flex gap-2 align-items-center"><i
                                     class="mdi mdi-eye-outline eye-size"></i><span>{{ keep?.views
                                     }}</span></span>
                         </div>
-                        <div class="col-lg-6 d-flex justify-content-start">
-                            <span class="d-flex gap-2 align-items-center"><img src="../assets/img/public/Logo (1).png"
-                                    alt=""><span>{{ keep?.kept }}</span></span>
+                        <div class="col-6 d-flex justify-content-start">
+                            <span class="d-flex gap-2 align-items-center"><i
+                                    class="mdi mdi-alpha-k-box-outline eye-size"></i><span>{{ keep?.kept }}</span></span>
                         </div>
                     </div>
                     <div class="row">
@@ -25,8 +56,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-4">
-                        <div class="col-lg-6 d-flex justify-content-end gap-2">
+                    <div class="row mb-4 flex-xl-row flex-xs-column">
+                        <div
+                            class="col-xl-6 order-xl-1 order-xs-2 d-flex align-items-center justify-content-xl-end justify-content-sm-center gap-2 mb-3">
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
@@ -39,7 +71,8 @@
                             </div>
                             <button class="btn save-button">save</button>
                         </div>
-                        <div class="col-lg-6 d-flex align-items-center gap-2">
+                        <div
+                            class="d-none d-sm-flex col-xl-6 order-xl-2 order-xs-1 align-items-center justify-content-xl-start justify-content-sm-center gap-2 mb-3">
                             <div>
                                 <img class="creator-picture rounded-circle img-fluid" :src="keep?.creator.picture" alt="">
                             </div>
@@ -70,16 +103,24 @@ export default {
 
 <style lang="scss" scoped>
 .keep-image {
-    width: 549px;
-    height: 657px;
+    width: 50%;
+    height: 41.0625em;
     border-radius: 21px 0px 0px 21px;
     background-size: cover;
     background-position: center;
 }
 
+.keep-image-m {
+    width: 100%;
+    height: 41.0625em;
+    border-radius: 21px 21px 21px 21px;
+    background-size: cover;
+    background-position: center;
+}
+
 .keep-info {
-    width: 549px;
-    height: 657px;
+    width: 50%;
+    height: 41.0625em;
     border-radius: 0px 21px 21px 0px;
     background-color: #FEF6F0;
 }
@@ -127,6 +168,25 @@ export default {
     text-transform: uppercase;
 }
 
+.vault-name-m {
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 25px;
+    color: #ffffff;
+    text-shadow: 1px 2px 2px black;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}
+
+.counts-m {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 24px;
+    text-shadow: 1px 2px 2px black;
+}
+
 .save-button {
     background-color: #877A8F;
     border-radius: 10px;
@@ -139,6 +199,22 @@ export default {
     display: flex;
     align-items: center;
     text-align: center;
+    box-shadow: 0px 4px 4px rgba(162, 119, 217, 0.25);
+}
+
+.save-button-m {
+    background-color: #877A8F;
+    border-radius: 10px;
+    color: #FEF6F0;
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid white;
     box-shadow: 0px 4px 4px rgba(162, 119, 217, 0.25);
 }
 
@@ -169,8 +245,6 @@ export default {
 
 .modal-keep-details {
     border-radius: 21px 21px 21px 21px;
-    width: 1100px;
-    height: 657px;
 }
 
 .eye-size {
