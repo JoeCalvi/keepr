@@ -25,12 +25,13 @@
                                     </button>
                                     <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
                                         <div v-for="vault in vaults">
-                                            <li><button class="dropdown-item" type="button">{{
-                                                vault?.name }}</button></li>
+                                            <li><button class="dropdown-item" type="button"
+                                                    @click="setActiveVault(`${vault?.id}`)">{{
+                                                        vault?.name }}</button></li>
                                         </div>
                                     </ul>
                                 </div>
-                                <button class="btn save-button-m">save</button>
+                                <button class="btn save-button-m" @click="createVaultKeep(`${keep?.id}`)">save</button>
                             </div>
                         </div>
                     </div>
@@ -70,12 +71,13 @@
                                     </button>
                                     <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
                                         <div v-for="vault in vaults">
-                                            <li><button class="dropdown-item" type="button">{{
-                                                vault?.name }}</button></li>
+                                            <li><button class="dropdown-item" type="button"
+                                                    @click="setActiveVault(`${vault?.id}`)">{{
+                                                        vault?.name }}</button></li>
                                         </div>
                                     </ul>
                                 </div>
-                                <button class="btn save-button">save</button>
+                                <button class="btn save-button" @click="createVaultKeep(`${keep?.id}`)">save</button>
                             </div>
                             <div
                                 class="d-none d-sm-flex col-xl-6 order-xl-2 order-xs-1 align-items-center justify-content-xl-start justify-content-sm-center gap-2 mb-3">
@@ -99,12 +101,31 @@
 <script>
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
+import { logger } from "../utils/Logger.js";
+import Pop from "../utils/Pop.js";
+import { vaultKeepsService } from "../services/VaultKeepsService";
 
 export default {
     setup() {
         return {
             keep: computed(() => AppState.activeKeep),
-            vaults: computed(() => AppState.myVaults)
+            vaults: computed(() => AppState.myVaults),
+
+            setActiveVault(vaultId) {
+                AppState.activeVault = AppState.myVaults.find(v => v.id == vaultId)
+                logger.log(AppState.activeVault)
+            },
+
+            async createVaultKeep(keepId) {
+                try {
+                    const vaultId = AppState.activeVault.id
+                    await vaultKeepsService.createVaultKeep(vaultId, keepId)
+                    AppState.activeVault = null
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+                }
+            }
         }
     }
 }
