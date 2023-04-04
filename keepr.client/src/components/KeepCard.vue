@@ -3,7 +3,7 @@
         <img @click="setActiveKeep(`${keep?.id}`)" class="img-fluid keep selectable" :src="keep?.img" :alt="keep?.img"
             data-bs-toggle="modal" data-bs-target="#keep-details">
         <div class="keep-info d-flex justify-content-between align-items-center px-2">
-            <span>
+            <span class="keep-name">
                 {{ keep?.name }}
             </span>
             <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
@@ -67,6 +67,13 @@ export default {
     color: #FFFFFF;
     text-shadow: 1px 1px 2px #2D2D2D;
     transform: translateY(-48px);
+}
+
+.keep-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
 }
 
 .creator-picture {
