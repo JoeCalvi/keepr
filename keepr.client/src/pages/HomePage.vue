@@ -25,6 +25,7 @@ import { AppState } from '../AppState.js';
 import KeepCard from '../components/KeepCard.vue';
 import Modal from '../components/Modal.vue';
 import KeepDetails from '../components/KeepDetails.vue';
+import { vaultsService } from '../services/VaultsService';
 
 export default {
   setup() {
@@ -37,12 +38,23 @@ export default {
         Pop.error(error);
       }
     }
+
+    async function getMyVaults() {
+      try {
+        await vaultsService.getMyVaults()
+      } catch (error) {
+        logger.error(error)
+        Pop.error(error)
+      }
+    }
+
     onMounted(() => {
       getAllKeeps();
+      getMyVaults();
     });
 
     onUnmounted(() => {
-      AppState.keeps = []
+      AppState.keeps = [];
     });
 
     return {

@@ -67,8 +67,8 @@
                                         <span class="vault-name">vault</span>
                                     </button>
                                     <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
-                                        <li><button class="dropdown-item" type="button">vault 1</button></li>
-                                        <li><button class="dropdown-item" type="button">vault 2</button></li>
+                                        <li v-for="vault in vaults"><button class="dropdown-item" type="button">{{
+                                            vault?.name }}</button></li>
                                     </ul>
                                 </div>
                                 <button class="btn save-button">save</button>
@@ -98,7 +98,8 @@ import { AppState } from "../AppState.js";
 export default {
     setup() {
         return {
-            keep: computed(() => AppState.activeKeep)
+            keep: computed(() => AppState.activeKeep),
+            vaults: computed(() => AppState.vaults.filter(v => v.creatorId == AppState.account?.id))
         }
     }
 }
