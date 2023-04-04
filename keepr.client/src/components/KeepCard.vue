@@ -34,7 +34,7 @@ import Pop from '../utils/Pop.js';
 
 export default {
     props: { keep: { type: Keep, required: true } },
-    setup() {
+    setup(props) {
         return {
             account: computed(() => AppState.account),
 
