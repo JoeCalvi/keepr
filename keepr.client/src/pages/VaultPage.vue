@@ -35,7 +35,6 @@ import { useRoute, useRouter } from 'vue-router';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { vaultsService } from '../services/VaultsService.js';
-import { profilesService } from '../services/ProfilesService.js';
 import { computed, onMounted, onUnmounted } from 'vue';
 import { AppState } from '../AppState';
 import KeepCard from '../components/KeepCard.vue';
@@ -46,6 +45,17 @@ export default {
     setup() {
         const route = useRoute();
         const router = useRouter();
+
+        async function getVaultById() {
+            try {
+                const vaultId = route.params.vaultId
+                await vaultsService.getVaultById(vaultId)
+            } catch (error) {
+                logger.error(error)
+                Pop.error(error)
+            }
+        }
+
         async function getKeepsInVault() {
             try {
                 const vaultId = route.params.vaultId;
@@ -59,8 +69,8 @@ export default {
         }
 
         onMounted(() => {
+            getVaultById();
             getKeepsInVault();
-            profilesService.getProfileById(AppState.activeVault?.creatorId)
         });
 
         onUnmounted(() => {

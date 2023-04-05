@@ -10,17 +10,19 @@
                 <img v-if="keep?.creatorId != account?.id && activeVault?.id == null" class="creator-picture rounded-circle"
                     :src="keep?.creator.picture" :alt="keep?.creator.picture">
             </router-link>
-            <div v-if="keep?.creatorId == account?.id || activeVault" class="dropstart">
+            <div v-if="keep?.creatorId == account?.id && !activeVault || activeVault && activeVault?.creatorId == account?.id"
+                class="dropstart">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="edit-keep">...</span>
                 </button>
                 <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
                     <li v-if="activeVault?.id == null && keep?.creatorId == account?.id"><button class="dropdown-item"
                             type="button">edit keep</button></li>
-                    <li v-if="activeVault?.id && activeVault?.creatorId"><button
+                    <li v-if="activeVault?.id && activeVault?.creatorId == account?.id"><button
                             @click="removeFromVault(`${keep?.vaultKeepId}`)" class="dropdown-item" type="button">remove from
                             vault</button></li>
-                    <li v-if="keep?.creatorId == account?.id"><button class="dropdown-item" type="button">delete
+                    <li v-if="keep?.creatorId == account?.id"><button @click="deleteKeep(`${keep?.id}`)"
+                            class="dropdown-item" type="button">delete
                             keep</button></li>
                 </ul>
             </div>
@@ -37,6 +39,7 @@ import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { vaultKeepsService } from '../services/VaultKeepsService';
+import { vaultsService } from '../services/VaultsService';
 
 export default {
     props: { keep: { type: Keep, required: true } },
@@ -59,6 +62,17 @@ export default {
                 try {
                     if (await Pop.confirm("Are you sure you want to remove this keep from this vault?", "You will have to manually find keep if you wish to re-add it.", "Remove keep.", "warning")) {
                         await vaultKeepsService.removeFromVault(vaultKeepId)
+                    }
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+                }
+            },
+
+            async deleteKeep(keepId) {
+                try {
+                    if (await Pop.confirm("Are you sure you want to delete this keep?", "This action cannot be undone.", "Delete Keep.", "warning")) {
+                        await vaultsService.deleteKeep(keepId)
                     }
                 } catch (error) {
                     logger.error(error)

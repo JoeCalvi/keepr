@@ -21,7 +21,7 @@
         <div class="row">
           <div v-for="vault in vaults" class="col-lg-3 col-md-4 col-sm-6 my-2">
             <router-link :to="{ name: 'Vault', params: { vaultId: vault?.id } }">
-              <VaultCard :vault="vault" @click="setActiveVault(`${vault?.id}`)" />
+              <VaultCard :vault="vault" />
             </router-link>
           </div>
         </div>
@@ -79,10 +79,10 @@ export default {
       vaults: computed(() => AppState.myVaults),
       keeps: computed(() => AppState.keeps?.filter(k => k.creatorId == AppState.account?.id)),
 
-      setActiveVault(vaultId) {
-        AppState.activeVault = AppState.myVaults.find(v => v.id == vaultId)
-        logger.log(AppState.activeVault)
-      }
+      // setActiveVault(vaultId) {
+      //   AppState.activeVault = AppState.myVaults.find(v => v.id == vaultId)
+      //   logger.log(AppState.activeVault)
+      // }
     };
   },
   components: { KeepCard, Modal, KeepDetails, VaultCard }
