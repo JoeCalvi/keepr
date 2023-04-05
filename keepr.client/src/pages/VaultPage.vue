@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center mt-5">
             <div class="col-lg-12 d-flex justify-content-center">
                 <div>
@@ -92,22 +92,23 @@ export default {
 
 
 <style lang="scss" scoped>
-$col-gap: 40px;
-$m-gap: 20px;
+$col-gap: 2vw;
+$m-gap: 2vw;
 
 .masonry {
-    columns: 201px;
+    columns: 20vw;
     column-gap: $col-gap;
     margin-top: $m-gap;
 
     &>div {
+        column-width: 20vw;
         display: inline-block;
     }
 }
 
 .cover-image {
-    height: 338px;
-    width: 759px;
+    height: 50vw;
+    width: 90vw;
     border-radius: 6px;
 }
 
