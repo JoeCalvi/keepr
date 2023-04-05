@@ -61,8 +61,6 @@ export default {
 
 <style lang="scss" scoped>
 .vault-card {
-    width: 20vw;
-    height: 15vw;
     background-position: center;
     background-size: cover;
 }
