@@ -84,12 +84,12 @@
                                 <button v-if="account?.id" class="btn save-button"
                                     @click="createVaultKeep(`${keep?.id}`)">save</button>
                             </div>
-                            <div
+                            <div v-if="keep"
                                 class="d-none d-sm-flex col-xl-6 order-xl-2 order-xs-1 align-items-center justify-content-xl-start justify-content-sm-center gap-2 mb-3">
-                                <div>
-                                    <img class="creator-picture rounded-circle img-fluid" :src="keep?.creator.picture"
-                                        alt="">
-                                </div>
+                                <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
+                                    <img class="creator-picture rounded-circle img-fluid selectable"
+                                        :src="keep?.creator.picture" alt="" data-bs-dismiss="modal">
+                                </router-link>
                                 <div class="creator-name">
                                     <span>{{ keep?.creator.name }}</span>
                                 </div>
@@ -138,12 +138,12 @@
                                 <button v-if="account?.id" class="btn save-button"
                                     @click="createVaultKeep(`${keep?.id}`)">save</button>
                             </div>
-                            <div
-                                class="d-none d-sm-flex col-xl-6 order-xl-2 order-xs-1 align-items-center justify-content-xl-start justify-content-sm-center gap-2 mb-3">
-                                <div>
+                            <div v-if="keep"
+                                class="d-flex col-xl-6 order-xl-2 order-xs-1 align-items-center justify-content-xl-start justify-content-center gap-2 mb-3">
+                                <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
                                     <img class="creator-picture rounded-circle img-fluid" :src="keep?.creator.picture"
-                                        alt="">
-                                </div>
+                                        alt="" data-bs-dismiss="modal">
+                                </router-link>
                                 <div class="creator-name">
                                     <span>{{ keep?.creator.name }}</span>
                                 </div>
