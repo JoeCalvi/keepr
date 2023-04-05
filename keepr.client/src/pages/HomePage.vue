@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-lg-10">
+      <div class="col-md-12">
         <section class="masonry">
           <div v-for="keep in keeps">
             <KeepCard :keep="keep" />
@@ -64,15 +64,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$col-gap: 40px;
-$m-gap: 20px;
+$col-gap: 2vw;
+$m-gap: 2vw;
 
 .masonry {
-  columns: 201px;
+  columns: 30vw;
   column-gap: $col-gap;
   margin-top: $m-gap;
 
   &>div {
+    column-width: 30vw;
     display: inline-block;
   }
 }

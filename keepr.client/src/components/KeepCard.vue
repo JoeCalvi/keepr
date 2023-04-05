@@ -7,11 +7,12 @@
                 {{ keep?.name }}
             </span>
             <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
-                <img v-if="keep?.creatorId != account?.id && activeVault?.id == null" class="creator-picture rounded-circle"
-                    :src="keep?.creator.picture" :alt="keep?.creator.picture">
+                <img v-if="keep?.creatorId != account?.id && activeVault?.id == null"
+                    class="creator-picture rounded-circle d-none d-sm-block" :src="keep?.creator.picture"
+                    :alt="keep?.creator.picture">
             </router-link>
             <div v-if="keep?.creatorId == account?.id && !activeVault || activeVault && activeVault?.creatorId == account?.id"
-                class="dropstart">
+                class="dropstart d-none d-sm-block">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="edit-keep">...</span>
                 </button>
@@ -39,7 +40,6 @@ import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { vaultKeepsService } from '../services/VaultKeepsService';
-import { vaultsService } from '../services/VaultsService';
 
 export default {
     props: { keep: { type: Keep, required: true } },
@@ -106,7 +106,7 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 140px;
+    max-width: 20vw;
 }
 
 .creator-picture {

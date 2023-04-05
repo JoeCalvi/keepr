@@ -18,15 +18,13 @@
           <span>{{ vaults?.length }} vaults</span> | <span>{{ keeps?.length }} keeps</span>
         </div>
       </div>
-      <div class="col-lg-10">
-        <h3>Vaults</h3>
-        <div class="row">
-          <div v-for="vault in vaults" class="col-lg-3 col-md-4 col-sm-6 my-2">
-            <VaultCard :vault="vault" />
-          </div>
+      <h3>Vaults</h3>
+      <div class="row">
+        <div v-for="vault in vaults" class="col-6 col-sm-4 mb-3">
+          <VaultCard :vault="vault" />
         </div>
       </div>
-      <div class="col-lg-10">
+      <div class="col-12">
         <h3>Keeps</h3>
         <section class="masonry">
           <KeepCard v-for="keep in keeps" :keep="keep" />
@@ -96,32 +94,34 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$col-gap: 40px;
-$m-gap: 20px;
+$col-gap: 2vw;
+$m-gap: 2vw;
 
 .masonry {
-  columns: 201px;
+  columns: 20vw;
   column-gap: $col-gap;
   margin-top: $m-gap;
 
   &>div {
+    column-width: 20vw;
     display: inline-block;
   }
 }
 
 .cover-image {
-  height: 338px;
-  width: 759px;
+  height: 50vw;
+  width: 90vw;
   border-radius: 6px;
 }
 
 .profile-picture {
-  height: 150px;
-  width: 150px;
+  height: 15vw;
+  width: 15vw;
+  display: flex;
 }
 
 .user-details {
-  transform: translateY(-75px);
+  transform: translateY(-7vw);
   font-family: 'Oxygen';
   font-style: normal;
   font-weight: 400;

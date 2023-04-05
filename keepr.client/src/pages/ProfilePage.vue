@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row justify-content-center mt-5">
       <div class="col-lg-12 d-flex justify-content-center">
         <div>
@@ -16,21 +16,23 @@
           <span>{{ vaults?.length }} vaults</span> | <span>{{ keeps?.length }} keeps</span>
         </div>
       </div>
-      <div class="col-lg-10">
-        <h3>Vaults</h3>
-        <div class="row">
-          <div v-for="vault in vaults" class="col-lg-3 col-md-4 col-sm-6 my-2">
-            <router-link :to="{ name: 'Vault', params: { vaultId: vault?.id } }">
-              <VaultCard :vault="vault" />
-            </router-link>
-          </div>
+      <h3>Vaults</h3>
+      <div class="row">
+        <div v-for="vault in vaults" class="col-sm-3 my-2">
+          <router-link :to="{ name: 'Vault', params: { vaultId: vault?.id } }">
+            <VaultCard :vault="vault" />
+          </router-link>
         </div>
       </div>
-      <div class="col-lg-10">
+      <div class="col-12">
         <h3>Keeps</h3>
-        <section class="masonry">
-          <KeepCard v-for="keep in keeps" :keep="keep" />
-        </section>
+        <div class="row">
+          <col-12>
+            <section class="masonry">
+              <KeepCard v-for="keep in keeps" :keep="keep" />
+            </section>
+          </col-12>
+        </div>
       </div>
     </div>
   </div>
@@ -105,12 +107,7 @@ export default {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
       keeps: computed(() => AppState.keeps),
-      vaults: computed(() => AppState.vaults),
-
-      // setActiveVault(vaultId) {
-      //   AppState.activeVault = AppState.vaults.find(v => v.id == vaultId)
-      //   logger.log(AppState.activeVault)
-      // }
+      vaults: computed(() => AppState.vaults)
     };
   },
   components: { KeepCard, Modal, KeepDetails, VaultCard }
@@ -118,32 +115,34 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$col-gap: 40px;
-$m-gap: 20px;
+$col-gap: 2vw;
+$m-gap: 2vw;
 
 .masonry {
-  columns: 201px;
+  columns: 30vw;
   column-gap: $col-gap;
   margin-top: $m-gap;
 
   &>div {
+    column-width: 30vw;
     display: inline-block;
   }
 }
 
 .cover-image {
-  height: 338px;
-  width: 759px;
+  height: 50vw;
+  width: 90vw;
   border-radius: 6px;
 }
 
 .profile-picture {
-  height: 150px;
-  width: 150px;
+  height: 15vw;
+  width: 15vw;
+  display: flex;
 }
 
 .user-details {
-  transform: translateY(-75px);
+  transform: translateY(-7vw);
   font-family: 'Oxygen';
   font-style: normal;
   font-weight: 400;

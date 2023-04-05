@@ -2,21 +2,8 @@
     <div class="VaultCard">
         <div class="card vault-card d-flex flex-column justify-content-between"
             :style="`background-image: url(${vault?.img})`">
-            <div class="d-flex justify-content-center">
-                <div v-if="vault?.isPrivate" class="d-flex justify-content-between align-items-center vault-name">
-                    <i v-if="vault?.isPrivate" class="mdi mdi-lock-outline vault-name"></i>
-                    <div v-if="vault?.creatorId == account?.id">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="edit-keep">...</span>
-                        </button>
-                        <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
-                            <li><button class="dropdown-item" type="button">edit vault</button></li>
-                            <li><button @click="deleteVault(`${vault?.id}`)" class="dropdown-item" type="button">delete
-                                    vault</button></li>
-                        </ul>
-                    </div>
-                </div>
-                <div v-else class="d-flex justify-content-end vault-name">
+            <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end vault-name">
                     <div v-if="vault?.creatorId == account?.id">
                         <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="edit-keep">...</span>
@@ -33,6 +20,7 @@
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div class="vault-name">
                         {{ vault?.name }}
+                        <i v-if="vault?.isPrivate" class="mdi mdi-lock-outline vault-name"></i>
                     </div>
                 </div>
             </router-link>
@@ -73,8 +61,8 @@ export default {
 
 <style lang="scss" scoped>
 .vault-card {
-    width: 195px;
-    height: 135px;
+    width: 20vw;
+    height: 15vw;
     background-position: center;
     background-size: cover;
 }
@@ -83,8 +71,7 @@ export default {
     font-family: 'Quando';
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
-    line-height: 30px;
+    font-size: 2vw;
     color: #FFFFFF;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.639);
     letter-spacing: 4px;
@@ -92,7 +79,7 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: normal;
-    width: 170px;
+    width: 15vw;
 }
 
 .create-options {
