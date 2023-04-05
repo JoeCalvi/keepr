@@ -60,7 +60,7 @@ export default {
 
             async removeFromVault(vaultKeepId) {
                 try {
-                    if (await Pop.confirm("Are you sure you want to remove this keep from this vault?", "You will have to manually find keep if you wish to re-add it.", "Remove keep.", "warning")) {
+                    if (await Pop.confirm("Are you sure you want to remove this keep from this vault?", "You will have to find keep if you wish to re-add it.", "Remove keep.", "warning")) {
                         await vaultKeepsService.removeFromVault(vaultKeepId)
                     }
                 } catch (error) {
