@@ -26,7 +26,7 @@
                                     <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
                                         <div v-for="vault in vaults">
                                             <li><button class="dropdown-item" type="button"
-                                                    @click="setActiveVault(`${vault?.id}`)">{{
+                                                    @click="setSelectedVault(`${vault?.id}`)">{{
                                                         vault?.name }}</button></li>
                                         </div>
                                     </ul>
@@ -72,7 +72,7 @@
                                     <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
                                         <div v-for="vault in vaults">
                                             <li><button class="dropdown-item" type="button"
-                                                    @click="setActiveVault(`${vault?.id}`)">{{
+                                                    @click="setSelectedVault(`${vault?.id}`)">{{
                                                         vault?.name }}</button></li>
                                         </div>
                                     </ul>
@@ -111,16 +111,16 @@ export default {
             keep: computed(() => AppState.activeKeep),
             vaults: computed(() => AppState.myVaults),
 
-            setActiveVault(vaultId) {
-                AppState.activeVault = AppState.myVaults.find(v => v.id == vaultId)
-                logger.log(AppState.activeVault)
+            setSelectedVault(vaultId) {
+                AppState.selectedVault = AppState.myVaults.find(v => v.id == vaultId)
+                logger.log(AppState.selectedVault)
             },
 
             async createVaultKeep(keepId) {
                 try {
-                    const vaultId = AppState.activeVault.id
+                    const vaultId = AppState.selectedVault.id
                     await vaultKeepsService.createVaultKeep(vaultId, keepId)
-                    AppState.activeVault = null
+                    AppState.selectedVault = null
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)

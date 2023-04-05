@@ -23,6 +23,10 @@
             </div>
         </div>
     </div>
+
+    <Modal id="keep-details">
+        <KeepDetails />
+    </Modal>
 </template>
 
 
@@ -35,6 +39,8 @@ import { profilesService } from '../services/ProfilesService.js';
 import { computed, onMounted, onUnmounted } from 'vue';
 import { AppState } from '../AppState';
 import KeepCard from '../components/KeepCard.vue';
+import Modal from '../components/Modal.vue';
+import KeepDetails from '../components/KeepDetails.vue';
 
 export default {
     setup() {
@@ -60,6 +66,7 @@ export default {
         onUnmounted(() => {
             AppState.keeps = [];
             AppState.profile = null;
+            AppState.activeVault = null;
         });
 
         return {
@@ -69,7 +76,7 @@ export default {
             account: computed(() => AppState.account)
         };
     },
-    components: { KeepCard }
+    components: { KeepCard, Modal, KeepDetails }
 }
 </script>
 

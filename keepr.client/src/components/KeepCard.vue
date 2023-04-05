@@ -20,6 +20,9 @@
                 </ul>
             </div>
         </div>
+        <div class="d-flex justify-content-end remove-vault">
+            <button class="btn btn-outline-danger rounded-circle"><i class="mdi mdi-close"></i></button>
+        </div>
     </div>
 </template>
 
@@ -37,6 +40,7 @@ export default {
     setup(props) {
         return {
             account: computed(() => AppState.account),
+            activeVault: computed(() => AppState.activeVault),
 
             async setActiveKeep(keepId) {
                 try {
@@ -102,5 +106,9 @@ img:hover {
 
 .edit-keep {
     color: #FFFFFF;
+}
+
+.remove-vault {
+    translate: 20px -250px;
 }
 </style>

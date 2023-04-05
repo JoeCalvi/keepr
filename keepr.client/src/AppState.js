@@ -10,5 +10,6 @@ export const AppState = reactive({
   activeKeep: null,
   vaults: [],
   myVaults: [],
-  activeVault: null
+  activeVault: null,
+  selectedVault: null
 })
