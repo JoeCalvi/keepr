@@ -1,11 +1,12 @@
 <template>
-  <header class="sticky-top">
+  <header class="sticky-top d-none d-sm-block">
     <Navbar />
   </header>
   <main>
     <router-view />
   </main>
-  <footer>
+  <footer class="sticky-bottom d-block d-sm-none">
+    <Navbar />
   </footer>
 
   <Modal id="add-keep">

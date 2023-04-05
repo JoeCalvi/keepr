@@ -4,7 +4,18 @@
       <router-link :to="{ name: 'Home' }">
         <div class="glass-card d-none d-sm-flex align-items-center justify-content-center selectable p-2">Home</div>
       </router-link>
-      <div class="dropdown">
+      <div class="dropdown d-none d-sm-block">
+        <button class="btn dropdown-style dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Create
+        </button>
+        <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
+          <li><button class="dropdown-item" style="border-bottom: 1px solid #2D3436;" type="button" data-bs-toggle="modal"
+              data-bs-target="#add-keep">new keep</button></li>
+          <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#add-vault">new
+              vault</button></li>
+        </ul>
+      </div>
+      <div class="dropup d-sm-none d-block">
         <button class="btn dropdown-style dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Create
         </button>
