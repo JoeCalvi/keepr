@@ -13,7 +13,8 @@
             </router-link>
             <div v-if="keep?.creatorId == account?.id && !activeVault || activeVault && activeVault?.creatorId == account?.id"
                 class="dropstart d-none d-sm-block">
-                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    title="Keep Options">
                     <span class="edit-keep">...</span>
                 </button>
                 <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">

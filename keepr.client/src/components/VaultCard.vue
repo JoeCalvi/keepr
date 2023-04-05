@@ -5,7 +5,8 @@
             <div class="d-flex justify-content-end">
                 <div class="d-flex justify-content-end vault-name">
                     <div v-if="vault?.creatorId == account?.id">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            title="Vault Options">
                             <span class="edit-keep">...</span>
                         </button>
                         <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
