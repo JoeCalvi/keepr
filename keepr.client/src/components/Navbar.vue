@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar d-flex align-items-center justify-content-between px-3">
-    <div class="d-flex align-items-center gap-2">
+  <nav class="navbar align-items-center justify-content-between px-3">
+    <div class="d-flex align-items-center gap-2 mb-3">
       <router-link :to="{ name: 'Home' }">
-        <div class="glass-card d-flex align-items-center justify-content-center selectable">Home</div>
+        <div class="glass-card d-none d-sm-flex align-items-center justify-content-center selectable p-2">Home</div>
       </router-link>
       <div class="dropdown">
         <button class="btn dropdown-style dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -16,10 +16,14 @@
         </ul>
       </div>
     </div>
-    <div>
-      <img class="logo" src="../assets/img/public/Keepr logo.png" alt="">
+    <div class="mb-3">
+      <router-link :to="{ name: 'Home' }">
+        <img class="logo" src="../assets/img/public/Keepr logo.png" alt="">
+      </router-link>
     </div>
-    <Login />
+    <div class="mb-3">
+      <Login />
+    </div>
   </nav>
 </template>
 
@@ -67,7 +71,7 @@ export default {
 }
 
 .logo {
-  transform: translateX(-75px);
+  transform: translateX(-5vw);
 }
 
 @media screen and (min-width: 768px) {
@@ -81,7 +85,5 @@ export default {
   border-radius: 15px;
   backdrop-filter: blur(10px);
   color: #2D2D2D;
-  height: 39px;
-  width: 99px;
 }
 </style>
