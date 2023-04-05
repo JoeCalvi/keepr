@@ -7,18 +7,21 @@
                 {{ keep?.name }}
             </span>
             <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
-                <img v-if="keep?.creatorId != account?.id" class="creator-picture rounded-circle"
+                <img v-if="keep?.creatorId != account?.id && activeVault?.id == null" class="creator-picture rounded-circle"
                     :src="keep?.creator.picture" :alt="keep?.creator.picture">
             </router-link>
-            <div v-if="keep?.creatorId == account?.id || activeVault?.id == null" class="dropstart">
+            <div v-if="keep?.creatorId == account?.id || activeVault" class="dropstart">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="edit-keep">...</span>
                 </button>
                 <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
-                    <li><button class="dropdown-item" type="button">edit keep</button></li>
-                    <li v-if="activeVault?.id"><button @click="removeFromVault(`${keep?.vaultKeepId}`)"
-                            class="dropdown-item" type="button">remove from vault</button></li>
-                    <li><button class="dropdown-item" type="button">delete keep</button></li>
+                    <li v-if="activeVault?.id == null && keep?.creatorId == account?.id"><button class="dropdown-item"
+                            type="button">edit keep</button></li>
+                    <li v-if="activeVault?.id && activeVault?.creatorId"><button
+                            @click="removeFromVault(`${keep?.vaultKeepId}`)" class="dropdown-item" type="button">remove from
+                            vault</button></li>
+                    <li v-if="keep?.creatorId == account?.id"><button class="dropdown-item" type="button">delete
+                            keep</button></li>
                 </ul>
             </div>
         </div>
