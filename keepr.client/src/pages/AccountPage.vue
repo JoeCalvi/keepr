@@ -1,16 +1,18 @@
 <template>
   <div class="container">
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mt-4">
       <div class="col-lg-12 d-flex justify-content-center">
         <div>
-          <img class="cover-image"
-            src="https://i.etsystatic.com/26950383/r/il/d906d6/4272278909/il_1080xN.4272278909_3hrr.jpg" alt="">
+          <img class="cover-image" :src="account?.coverImg" alt="">
         </div>
       </div>
       <div class="col-lg-12 d-flex flex-column align-items-center user-details">
         <img class="profile-picture rounded-circle" :src="account?.picture" alt="">
         <div class="mt-3">
-          <h1>{{ account?.name }}</h1>
+          <h1>{{ account?.name }} <button title="Edit account details." class="btn btn-outline-dark" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#edit-account" aria-controls="edit-account">
+              <i class="mdi mdi-pen"></i>
+            </button></h1>
         </div>
         <div>
           <span>{{ vaults?.length }} vaults</span> | <span>{{ keeps?.length }} keeps</span>
@@ -20,9 +22,7 @@
         <h3>Vaults</h3>
         <div class="row">
           <div v-for="vault in vaults" class="col-lg-3 col-md-4 col-sm-6 my-2">
-            <router-link :to="{ name: 'Vault', params: { vaultId: vault?.id } }">
-              <VaultCard :vault="vault" />
-            </router-link>
+            <VaultCard :vault="vault" />
           </div>
         </div>
       </div>
@@ -38,6 +38,10 @@
   <Modal id="keep-details">
     <KeepDetails />
   </Modal>
+
+  <OffCanvas id="edit-account">
+    <EditAccountForm />
+  </OffCanvas>
 </template>
 
 <script>
@@ -51,6 +55,8 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { accountService } from '../services/AccountService.js';
 import { keepsService } from '../services/KeepsService.js';
+import OffCanvas from '../components/OffCanvas.vue';
+import EditAccountForm from '../components/EditAccountForm.vue';
 
 export default {
   setup() {
@@ -85,7 +91,7 @@ export default {
       // }
     };
   },
-  components: { KeepCard, Modal, KeepDetails, VaultCard }
+  components: { KeepCard, Modal, KeepDetails, VaultCard, OffCanvas, EditAccountForm }
 }
 </script>
 

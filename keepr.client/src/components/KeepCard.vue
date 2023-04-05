@@ -72,7 +72,7 @@ export default {
             async deleteKeep(keepId) {
                 try {
                     if (await Pop.confirm("Are you sure you want to delete this keep?", "This action cannot be undone.", "Delete Keep.", "warning")) {
-                        await vaultsService.deleteKeep(keepId)
+                        await keepsService.deleteKeep(keepId)
                     }
                 } catch (error) {
                     logger.error(error)

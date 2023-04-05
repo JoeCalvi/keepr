@@ -33,12 +33,11 @@ class VaultsService {
         // logger.log(AppState.keeps)
     }
 
-    async deleteKeep(keepId) {
-        const res = await api.delete(`api/keeps/${keepId}`)
-        const keep = AppState.keeps.find(k => k.id == keepId)
-        Pop.toast(`${res.data}`, "success", "center", "3000", true)
-        const keepIndex = AppState.keeps.findIndex(k => k.id == keepId)
-        AppState.keeps.splice(keepIndex, 1)
+    async deleteVault(vaultId) {
+        const res = await api.delete(`api/vaults/${vaultId}`)
+        Pop.toast(`${res.data}`, "success", "center", 3000, true)
+        const vaultIndex = AppState.myVaults.findIndex(v => v.id == vaultId)
+        AppState.myVaults.splice(vaultIndex, 1)
     }
 }
 
