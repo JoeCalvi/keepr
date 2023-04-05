@@ -39,8 +39,10 @@
                 </div> -->
                 <!-- SECTION end -->
                 <div class="row align-items-center">
-                    <div class="col-md-6 d-flex keep-image" :style="`background-image: url(${keep?.img})`"></div>
-                    <div class="col-md-6 keep-info d-flex flex-column justify-content-between">
+                    <div class="col-lg-6 d-none d-md-flex keep-image" :style="`background-image: url(${keep?.img})`"></div>
+                    <div class="col-lg-6 d-block d-md-none keep-image-sm" :style="`background-image: url(${keep?.img})`">
+                    </div>
+                    <div class="col-lg-6 d-none d-md-flex keep-info flex-column justify-content-between">
                         <div class="row justify-content-center align-items-center mt-4">
                             <div class="col-6 d-flex justify-content-end">
                                 <span class="d-flex gap-2 align-items-center"><i
@@ -66,6 +68,59 @@
                         <div class="row mb-4 flex-xl-row flex-xs-column">
                             <div
                                 class="col-xl-6 order-xl-1 order-xs-2 d-flex align-items-center justify-content-xl-end justify-content-sm-center gap-2 mb-3">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <span class="vault-name">vault</span>
+                                    </button>
+                                    <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
+                                        <div v-for="vault in vaults">
+                                            <li><button class="dropdown-item" type="button"
+                                                    @click="setSelectedVault(`${vault?.id}`)">{{
+                                                        vault?.name }}</button></li>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <button class="btn save-button" @click="createVaultKeep(`${keep?.id}`)">save</button>
+                            </div>
+                            <div
+                                class="d-none d-sm-flex col-xl-6 order-xl-2 order-xs-1 align-items-center justify-content-xl-start justify-content-sm-center gap-2 mb-3">
+                                <div>
+                                    <img class="creator-picture rounded-circle img-fluid" :src="keep?.creator.picture"
+                                        alt="">
+                                </div>
+                                <div class="creator-name">
+                                    <span>{{ keep?.creator.name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 d-block d-md-none keep-info-sm flex-column justify-content-between">
+                        <div class="row justify-content-center align-items-center mt-4">
+                            <div class="col-6 d-flex justify-content-end">
+                                <span class="d-flex gap-2 align-items-center"><i
+                                        class="mdi mdi-eye-outline eye-size"></i><span>{{ keep?.views
+                                        }}</span></span>
+                            </div>
+                            <div class="col-6 d-flex justify-content-start">
+                                <span class="d-flex gap-2 align-items-center"><i
+                                        class="mdi mdi-alpha-k-box-outline eye-size"></i><span>{{ keep?.kept
+                                        }}</span></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div>
+                                    <h1 class="keep-name">{{ keep?.name }}</h1>
+                                    <p class="keep-description">
+                                        {{ keep?.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4 flex-xl-row flex-xs-column">
+                            <div
+                                class="col-xl-6 order-xl-1 order-xs-2 d-flex align-items-center justify-content-xl-end justify-content-center gap-2 mb-3">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
@@ -143,6 +198,14 @@ export default {
     background-position: center;
 }
 
+.keep-image-sm {
+    width: 100%;
+    height: 41.0625em;
+    border-radius: 21px 21px 0px 0px;
+    background-size: cover;
+    background-position: center;
+}
+
 // .keep-image-m {
 //     width: 100%;
 //     height: 41.0625em;
@@ -158,12 +221,18 @@ export default {
     background-color: #FEF6F0;
 }
 
+.keep-info-sm {
+    width: 100%;
+    // height: 41.0625em;
+    border-radius: 0px 0px 21px 21px;
+    background-color: #FEF6F0;
+}
+
 .keep-name {
     font-family: 'Marko One';
     font-style: normal;
     font-weight: 400;
     font-size: 48px;
-    line-height: 64px;
     text-align: center;
     color: #2D3436;
 }
@@ -173,7 +242,6 @@ export default {
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
-    line-height: 175%;
     color: #636E72;
 }
 
@@ -182,7 +250,6 @@ export default {
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
-    line-height: 30px;
     color: #2D2D2D;
 }
 
@@ -195,7 +262,6 @@ export default {
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
-    line-height: 25px;
     color: #2D2D2D;
     letter-spacing: 10px;
     text-transform: uppercase;
@@ -228,7 +294,6 @@ export default {
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
-    line-height: 25px;
     display: flex;
     align-items: center;
     text-align: center;
@@ -268,7 +333,6 @@ export default {
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
-    line-height: 23px;
     color: #000000;
     overflow: hidden;
     white-space: nowrap;
