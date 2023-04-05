@@ -68,7 +68,7 @@
                         <div class="row mb-4 flex-xl-row flex-xs-column">
                             <div
                                 class="col-xl-6 order-xl-1 order-xs-2 d-flex align-items-center justify-content-xl-end justify-content-sm-center gap-2 mb-3">
-                                <div class="dropdown">
+                                <div v-if="account?.id" class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
                                         <span class="vault-name">vault</span>
@@ -81,7 +81,8 @@
                                         </div>
                                     </ul>
                                 </div>
-                                <button class="btn save-button" @click="createVaultKeep(`${keep?.id}`)">save</button>
+                                <button v-if="account?.id" class="btn save-button"
+                                    @click="createVaultKeep(`${keep?.id}`)">save</button>
                             </div>
                             <div
                                 class="d-none d-sm-flex col-xl-6 order-xl-2 order-xs-1 align-items-center justify-content-xl-start justify-content-sm-center gap-2 mb-3">
@@ -119,7 +120,7 @@
                             </div>
                         </div>
                         <div class="row mb-4 flex-xl-row flex-xs-column">
-                            <div
+                            <div v-if="account?.id"
                                 class="col-xl-6 order-xl-1 order-xs-2 d-flex align-items-center justify-content-xl-end justify-content-center gap-2 mb-3">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -134,7 +135,8 @@
                                         </div>
                                     </ul>
                                 </div>
-                                <button class="btn save-button" @click="createVaultKeep(`${keep?.id}`)">save</button>
+                                <button v-if="account?.id" class="btn save-button"
+                                    @click="createVaultKeep(`${keep?.id}`)">save</button>
                             </div>
                             <div
                                 class="d-none d-sm-flex col-xl-6 order-xl-2 order-xs-1 align-items-center justify-content-xl-start justify-content-sm-center gap-2 mb-3">
@@ -167,6 +169,7 @@ export default {
         return {
             keep: computed(() => AppState.activeKeep),
             vaults: computed(() => AppState.myVaults),
+            account: computed(() => AppState.account),
 
             setSelectedVault(vaultId) {
                 AppState.selectedVault = AppState.myVaults.find(v => v.id == vaultId)

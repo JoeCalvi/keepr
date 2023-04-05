@@ -9,7 +9,7 @@
             <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
                 <img v-if="keep?.creatorId != account?.id && activeVault?.id == null"
                     class="creator-picture rounded-circle d-none d-sm-block" :src="keep?.creator.picture"
-                    :alt="keep?.creator.picture">
+                    :alt="keep?.creator.picture" :title="keep?.creator.name">
             </router-link>
             <div v-if="keep?.creatorId == account?.id && !activeVault || activeVault && activeVault?.creatorId == account?.id"
                 class="dropstart d-none d-sm-block">
