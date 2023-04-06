@@ -4,7 +4,7 @@
       <router-link :to="{ name: 'Home' }">
         <div class="glass-card d-none d-sm-flex align-items-center justify-content-center selectable p-2">Home</div>
       </router-link>
-      <div v-if="activeProfile == null && activeVault == null" class="dropdown d-none d-sm-block">
+      <div v-if="account?.id && activeProfile == null && activeVault == null" class="dropdown d-none d-sm-block">
         <button class="btn dropdown-style dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Create
         </button>
@@ -16,9 +16,14 @@
         </ul>
       </div>
     </div>
-    <div class="mb-3 d-none d-sm-block">
+    <div v-if="account?.id && activeProfile == null && activeVault == null" class="dropdown mb-3 d-none d-sm-block">
       <router-link :to="{ name: 'Home' }">
         <img class="logo" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
+      </router-link>
+    </div>
+    <div v-if="!account?.id || activeProfile || activeVault" class="mb-3 d-none d-sm-block">
+      <router-link :to="{ name: 'Home' }">
+        <img class="logo-no-account" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
       </router-link>
     </div>
     <div v-if="!account?.id || activeProfile || activeVault" class="mb-3 d-block d-sm-none">
@@ -100,6 +105,10 @@ export default {
 
 .logo {
   transform: translateX(-5vw);
+}
+
+.logo-no-account {
+  transform: translateX(2vw);
 }
 
 .logo-m {
