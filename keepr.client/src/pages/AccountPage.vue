@@ -95,12 +95,12 @@ $col-gap: 2vw;
 $m-gap: 2vw;
 
 .masonry {
-  columns: 20vw;
+  columns: 30vw;
   column-gap: $col-gap;
   margin-top: $m-gap;
 
   &>div {
-    column-width: 20vw;
+    column-width: 30vw;
     display: inline-block;
   }
 }

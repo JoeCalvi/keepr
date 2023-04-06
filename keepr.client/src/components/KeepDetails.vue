@@ -40,7 +40,10 @@
                 <!-- SECTION end -->
                 <div class="row align-items-center">
                     <div class="col-lg-6 d-none d-md-flex keep-image" :style="`background-image: url(${keep?.img})`"></div>
-                    <div class="col-lg-6 d-block d-md-none keep-image-sm" :style="`background-image: url(${keep?.img})`">
+                    <div class="col-lg-6 d-block d-md-none keep-image-sm text-end"
+                        :style="`background-image: url(${keep?.img})`">
+                        <button class="btn btn-outline-danger mt-3 me-2" data-bs-dismiss="modal" title="Close modal"><i
+                                class="mdi mdi-close fs-2"></i></button>
                     </div>
                     <div class="col-lg-6 d-none d-md-flex keep-info flex-column justify-content-between">
                         <div class="row justify-content-center align-items-center mt-4">

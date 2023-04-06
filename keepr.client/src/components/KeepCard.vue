@@ -96,7 +96,7 @@ export default {
     font-family: 'Marko One';
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 1.2em;
     color: #FFFFFF;
     text-shadow: 1px 1px 2px #2D2D2D;
     transform: translateY(-7vw);
@@ -106,7 +106,7 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 25vw;
+    max-width: 28vw;
 }
 
 .creator-picture {
