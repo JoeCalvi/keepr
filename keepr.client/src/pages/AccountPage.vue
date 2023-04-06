@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { computed, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted, watchEffect } from 'vue'
 import { AppState } from '../AppState.js'
 import KeepCard from '../components/KeepCard.vue';
 import VaultCard from '../components/VaultCard.vue';
@@ -69,6 +69,7 @@ export default {
     }
 
     onMounted(() => {
+      accountService.getAccount();
       getMyVaults();
       keepsService.getAllKeeps()
     })
@@ -83,10 +84,6 @@ export default {
       vaults: computed(() => AppState.myVaults),
       keeps: computed(() => AppState.keeps?.filter(k => k.creatorId == AppState.account?.id)),
 
-      // setActiveVault(vaultId) {
-      //   AppState.activeVault = AppState.myVaults.find(v => v.id == vaultId)
-      //   logger.log(AppState.activeVault)
-      // }
     };
   },
   components: { KeepCard, Modal, KeepDetails, VaultCard, OffCanvas, EditAccountForm }

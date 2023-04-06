@@ -97,22 +97,21 @@ export default {
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
-    line-height: 32px;
     color: #FFFFFF;
     text-shadow: 1px 1px 2px #2D2D2D;
-    transform: translateY(-48px);
+    transform: translateY(-7vw);
 }
 
 .keep-name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 20vw;
+    max-width: 25vw;
 }
 
 .creator-picture {
-    height: 40px;
-    width: 40px;
+    height: 5vw;
+    width: 5vw;
     filter: drop-shadow(0px 4.79889px 4.79889px rgba(0, 0, 0, 0.25));
 }
 
@@ -130,10 +129,12 @@ img:hover {
 }
 
 .dropdown-item:hover {
-    background-color: #d0c8da;
+    background-color: #b8afc2;
 }
 
 .edit-keep {
-    color: #FFFFFF;
+    color: #d0c8da;
+    font-size: 36px;
+    text-shadow: 1px 2px 2px black;
 }
 </style>

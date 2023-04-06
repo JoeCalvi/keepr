@@ -11,7 +11,7 @@
                         <form @submit.prevent="createVault()">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input required v-model="editable.name" maxlength="12" type="text" class="form-control"
+                                <input required v-model="editable.name" maxlength="20" type="text" class="form-control"
                                     id="name" placeholder="Vault Name...">
                             </div>
                             <div class="mb-3">

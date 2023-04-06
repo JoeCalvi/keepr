@@ -10,7 +10,6 @@ class VaultsService {
     async createVault(vaultData) {
         const res = await api.post('api/vaults', vaultData)
         AppState.vaults.unshift(new Vault(res.data))
-        const vault = AppState.vaults.find(v => v.id == vaultData.id)
         Pop.toast(`Vault created!`, "success", "center", 3000, true)
         // logger.log(AppState.vaults)
     }

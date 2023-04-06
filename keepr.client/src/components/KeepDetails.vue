@@ -180,6 +180,7 @@ export default {
                 try {
                     const vaultId = AppState.selectedVault.id
                     await vaultKeepsService.createVaultKeep(vaultId, keepId)
+                    Pop.toast(`Added to ${AppState.selectedVault?.name}!`, "success", "center", 3000, true)
                     AppState.selectedVault = null
                 } catch (error) {
                     logger.error(error)

@@ -4,7 +4,7 @@
       <router-link :to="{ name: 'Home' }">
         <div class="glass-card d-none d-sm-flex align-items-center justify-content-center selectable p-2">Home</div>
       </router-link>
-      <div class="dropdown d-none d-sm-block">
+      <div v-if="activeProfile == null && activeVault == null" class="dropdown d-none d-sm-block">
         <button class="btn dropdown-style dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Create
         </button>
@@ -15,7 +15,7 @@
               vault</button></li>
         </ul>
       </div>
-      <div class="dropup d-sm-none d-block">
+      <div v-if="activeProfile == null && activeVault == null" class="dropup d-sm-none d-block">
         <button class="btn dropdown-style dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Create
         </button>
@@ -29,7 +29,7 @@
     </div>
     <div class="mb-3">
       <router-link :to="{ name: 'Home' }">
-        <img class="logo" src="../assets/img/public/Keepr logo.png" alt="">
+        <img class="logo" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
       </router-link>
     </div>
     <div class="mb-3">
@@ -40,11 +40,16 @@
 
 <script>
 
+import { computed } from 'vue';
 import Login from './Login.vue'
+import { AppState } from '../AppState.js';
 
 export default {
   setup() {
-    return {}
+    return {
+      activeVault: computed(() => AppState.activeVault),
+      activeProfile: computed(() => AppState.profile)
+    }
   },
   components: { Login }
 }

@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS vaults(
   name VARCHAR(50) NOT NULL COMMENT 'Vault Name',
   description VARCHAR(300) NOT NULL COMMENT 'Vault Description',
   img VARCHAR(500) NOT NULL COMMENT 'Vault Image',
-  isPrivate BOOLEAN NOT NULL DEFAULT FALSE,
+  isPrivate BOOLEAN DEFAULT FALSE,
 
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
