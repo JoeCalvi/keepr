@@ -19,7 +19,7 @@
             </div>
             <router-link :to="{ name: 'Vault', params: { vaultId: vault?.id } }">
                 <div class="card-body d-flex flex-column justify-content-between">
-                    <div class="vault-name">
+                    <div class="vault-name d-flex justify-content-between">
                         {{ vault?.name }}
                         <i v-if="vault?.isPrivate" class="mdi mdi-lock-outline vault-name"></i>
                     </div>
@@ -64,21 +64,22 @@ export default {
 .vault-card {
     background-position: center;
     background-size: cover;
+    // height: 15vw;
 }
 
 .vault-name {
     font-family: 'Quando';
     font-style: normal;
     font-weight: 400;
-    font-size: 2vw;
+    font-size: 16px;
     color: #FFFFFF;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.639);
-    letter-spacing: 4px;
+    letter-spacing: .8vw;
     text-transform: uppercase;
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: normal;
-    width: 15vw;
+    width: 30vw;
 }
 
 .create-options {
@@ -95,7 +96,8 @@ export default {
 }
 
 .edit-keep {
-    color: #FFFFFF;
-    text-shadow: 1px 1px 2px black;
+    color: #d0c8da;
+    font-size: 16px;
+    text-shadow: 1px 2px 2px black;
 }
 </style>
