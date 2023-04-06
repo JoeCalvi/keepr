@@ -79,7 +79,7 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: normal;
-    width: 30vw;
+    width: 15vw;
 }
 
 .create-options {
