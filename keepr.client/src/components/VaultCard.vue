@@ -96,7 +96,7 @@ export default {
 
 .edit-keep {
     color: #d0c8da;
-    font-size: 16px;
+    font-size: 1.5em;
     text-shadow: 1px 2px 2px black;
 }
 </style>

@@ -106,7 +106,7 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 28vw;
+    max-width: 30vw;
 }
 
 .creator-picture {

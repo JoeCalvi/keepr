@@ -21,17 +21,17 @@
         <img class="logo" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
       </router-link>
     </div>
-    <div v-if="activeProfile || activeVault" class="mb-3 d-block d-sm-none">
+    <div v-if="!account?.id || activeProfile || activeVault" class="mb-3 d-block d-sm-none">
       <router-link :to="{ name: 'Home' }">
         <img class="logo-m" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
       </router-link>
     </div>
-    <div v-if="activeProfile == null && activeVault == null" class="mb-3 d-block d-sm-none">
+    <div v-if="account?.id && activeProfile == null && activeVault == null" class="mb-3 d-block d-sm-none">
       <router-link :to="{ name: 'Home' }">
         <img class="logo-m-2" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
       </router-link>
     </div>
-    <div v-if="activeProfile == null && activeVault == null" class="dropup d-sm-none d-block">
+    <div v-if="account?.id && activeProfile == null && activeVault == null" class="dropup d-sm-none d-block">
       <button class="btn dropdown-style dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Create
       </button>
@@ -54,9 +54,11 @@ import { computed } from 'vue';
 import Login from './Login.vue'
 import { AppState } from '../AppState.js';
 
+
 export default {
   setup() {
     return {
+      account: computed(() => AppState.account),
       activeVault: computed(() => AppState.activeVault),
       activeProfile: computed(() => AppState.profile)
     }

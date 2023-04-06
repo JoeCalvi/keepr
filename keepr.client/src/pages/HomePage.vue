@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <section class="masonry">
           <div v-for="keep in keeps">
-            <KeepCard :keep="keep" />
+            <KeepCard :keep="keep" title="See Keep Details" />
           </div>
         </section>
       </div>

@@ -20,7 +20,7 @@
       <div class="row">
         <div v-for="vault in vaults" class="col-sm-3 my-2">
           <router-link :to="{ name: 'Vault', params: { vaultId: vault?.id } }">
-            <VaultCard :vault="vault" />
+            <VaultCard :vault="vault" title="Go To Vault" />
           </router-link>
         </div>
       </div>
@@ -29,7 +29,7 @@
         <div class="row">
           <col-12>
             <section class="masonry">
-              <KeepCard v-for="keep in keeps" :keep="keep" />
+              <KeepCard v-for="keep in keeps" :keep="keep" title="See Keep Details" />
             </section>
           </col-12>
         </div>
@@ -98,6 +98,8 @@ export default {
     watchEffect(() => {
       if (AppState.profile == null) {
         getProfileById();
+        getVaultsByProfileId();
+        getKeepsByProfileId();
       }
     })
 

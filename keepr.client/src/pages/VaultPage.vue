@@ -18,7 +18,7 @@
                 </div>
                 <h3>Keeps</h3>
                 <section class="masonry">
-                    <KeepCard v-for="keep in keeps" :keep="keep" />
+                    <KeepCard v-for="keep in keeps" :keep="keep" title="See Keep Details" />
                 </section>
             </div>
         </div>

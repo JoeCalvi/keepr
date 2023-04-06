@@ -21,13 +21,13 @@
       <h3>Vaults</h3>
       <div class="row">
         <div v-for="vault in vaults" class="col-6 col-sm-4 mb-3">
-          <VaultCard :vault="vault" />
+          <VaultCard :vault="vault" title="Go to Vault" />
         </div>
       </div>
       <div class="col-12">
         <h3>Keeps</h3>
         <section class="masonry">
-          <KeepCard v-for="keep in keeps" :keep="keep" />
+          <KeepCard v-for="keep in keeps" :keep="keep" title="See Keep Details" />
         </section>
       </div>
     </div>
