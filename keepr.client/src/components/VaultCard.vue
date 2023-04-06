@@ -64,7 +64,6 @@ export default {
 .vault-card {
     background-position: center;
     background-size: cover;
-    // height: 15vw;
 }
 
 .vault-name {

@@ -230,7 +230,6 @@ export default {
 
 .keep-info-sm {
     width: 100%;
-    // height: 41.0625em;
     border-radius: 0px 0px 21px 21px;
     background-color: #FEF6F0;
 }

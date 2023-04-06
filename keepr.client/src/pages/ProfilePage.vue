@@ -36,6 +36,10 @@
       </div>
     </div>
   </div>
+
+  <Modal id="keep-details">
+    <KeepDetails />
+  </Modal>
 </template>
 
 <script>

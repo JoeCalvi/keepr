@@ -15,22 +15,32 @@
               vault</button></li>
         </ul>
       </div>
-      <div v-if="activeProfile == null && activeVault == null" class="dropup d-sm-none d-block">
-        <button class="btn dropdown-style dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Create
-        </button>
-        <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
-          <li><button class="dropdown-item" style="border-bottom: 1px solid #2D3436;" type="button" data-bs-toggle="modal"
-              data-bs-target="#add-keep">new keep</button></li>
-          <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#add-vault">new
-              vault</button></li>
-        </ul>
-      </div>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 d-none d-sm-block">
       <router-link :to="{ name: 'Home' }">
         <img class="logo" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
       </router-link>
+    </div>
+    <div v-if="activeProfile || activeVault" class="mb-3 d-block d-sm-none">
+      <router-link :to="{ name: 'Home' }">
+        <img class="logo-m" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
+      </router-link>
+    </div>
+    <div v-if="activeProfile == null && activeVault == null" class="mb-3 d-block d-sm-none">
+      <router-link :to="{ name: 'Home' }">
+        <img class="logo-m-2" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
+      </router-link>
+    </div>
+    <div v-if="activeProfile == null && activeVault == null" class="dropup d-sm-none d-block">
+      <button class="btn dropdown-style dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Create
+      </button>
+      <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
+        <li><button class="dropdown-item" style="border-bottom: 1px solid #2D3436;" type="button" data-bs-toggle="modal"
+            data-bs-target="#add-keep">new keep</button></li>
+        <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#add-vault">new
+            vault</button></li>
+      </ul>
     </div>
     <div class="mb-3">
       <Login />
@@ -87,6 +97,14 @@ export default {
 }
 
 .logo {
+  transform: translateX(-5vw);
+}
+
+.logo-m {
+  transform: translateX(-27vw);
+}
+
+.logo-m-2 {
   transform: translateX(-5vw);
 }
 
