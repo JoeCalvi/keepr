@@ -18,22 +18,22 @@
     </div>
     <div v-if="account?.id && activeProfile == null && activeVault == null" class="dropdown mb-3 d-none d-sm-block">
       <router-link :to="{ name: 'Home' }">
-        <img class="logo" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
+        <img class="logo" src="/keeprLogo.png" alt="" title="Go To Home Page">
       </router-link>
     </div>
     <div v-if="!account?.id || activeProfile || activeVault" class="mb-3 d-none d-sm-block">
       <router-link :to="{ name: 'Home' }">
-        <img class="logo-no-account" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
+        <img class="logo-no-account" src="/keeprLogo.png" alt="" title="Go To Home Page">
       </router-link>
     </div>
     <div v-if="!account?.id || activeProfile || activeVault" class="mb-3 d-block d-sm-none">
       <router-link :to="{ name: 'Home' }">
-        <img class="logo-m" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
+        <img class="logo-m" src="/keeprLogo.png" alt="" title="Go To Home Page">
       </router-link>
     </div>
     <div v-if="account?.id && activeProfile == null && activeVault == null" class="mb-3 d-block d-sm-none">
       <router-link :to="{ name: 'Home' }">
-        <img class="logo-m-2" src="../assets/img/public/Keepr logo.png" alt="" title="Go To Home Page">
+        <img class="logo-m-2" src="/keeprLogo.png" alt="" title="Go To Home Page">
       </router-link>
     </div>
     <div v-if="account?.id && activeProfile == null && activeVault == null" class="dropup d-sm-none d-block">
