@@ -30,7 +30,7 @@
                                     rows="5"></textarea>
                             </div>
                             <div class="d-flex justify-content-end mb-3">
-                                <button class="btn btn-primary" type="submit">Add Keep</button>
+                                <button class="btn btn-primary" type="submit" data-bs-dismiss="modal">Add Keep</button>
                             </div>
                         </form>
                     </div>

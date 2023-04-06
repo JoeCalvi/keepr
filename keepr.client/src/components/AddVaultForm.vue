@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end mb-3">
-                                <button class="btn btn-primary" type="submit">Add Vault</button>
+                                <button class="btn btn-primary" type="submit" data-bs-dismiss="modal">Add Vault</button>
                             </div>
                         </form>
                     </div>

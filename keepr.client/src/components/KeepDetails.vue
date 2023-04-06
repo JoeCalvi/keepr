@@ -128,7 +128,7 @@
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
-                                        <span class="vault-name">vault</span>
+                                        <span class="vault-name"></span>
                                     </button>
                                     <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
                                         <div v-for="vault in vaults">
@@ -173,6 +173,7 @@ export default {
             keep: computed(() => AppState.activeKeep),
             vaults: computed(() => AppState.myVaults),
             account: computed(() => AppState.account),
+            selectedVault: computed(() => AppState.selectedVault),
 
             setSelectedVault(vaultId) {
                 AppState.selectedVault = AppState.myVaults.find(v => v.id == vaultId)
@@ -269,7 +270,7 @@ export default {
     font-weight: 700;
     font-size: 20px;
     color: #2D2D2D;
-    letter-spacing: 10px;
+    letter-spacing: 1vw;
     text-transform: uppercase;
 }
 
