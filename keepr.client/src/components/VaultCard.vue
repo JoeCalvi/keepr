@@ -78,7 +78,7 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: normal;
-    width: 27vw;
+    width: 20vw;
 }
 
 .create-options {
