@@ -10,7 +10,7 @@
                             <span class="edit-keep">...</span>
                         </button>
                         <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
-                            <li><button class="dropdown-item" type="button">edit vault</button></li>
+                            <!-- <li><button class="dropdown-item" type="button">edit vault</button></li> -->
                             <li><button @click="deleteVault(`${vault?.id}`)" class="dropdown-item" type="button">delete
                                     vault</button></li>
                         </ul>
@@ -64,7 +64,6 @@ export default {
 .vault-card {
     background-position: center;
     background-size: cover;
-    height: 15vw;
 }
 
 .vault-name {
@@ -79,7 +78,7 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: normal;
-    width: 15vw;
+    width: 27vw;
 }
 
 .create-options {

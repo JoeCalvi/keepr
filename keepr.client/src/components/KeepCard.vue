@@ -18,8 +18,8 @@
                     <span class="edit-keep">...</span>
                 </button>
                 <ul class="dropdown-menu create-options" style="background-color: #DED6E9;">
-                    <li v-if="activeVault?.id == null && keep?.creatorId == account?.id"><button class="dropdown-item"
-                            type="button">edit keep</button></li>
+                    <!-- <li v-if="activeVault?.id == null && keep?.creatorId == account?.id"><button class="dropdown-item"
+                            type="button">edit keep</button></li> -->
                     <li v-if="activeVault?.id && activeVault?.creatorId == account?.id"><button
                             @click="removeFromVault(`${keep?.vaultKeepId}`)" class="dropdown-item" type="button">remove from
                             vault</button></li>
